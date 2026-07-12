@@ -101,7 +101,7 @@
   .apps-header { text-align: center; margin-bottom: 56px; }
   .apps-header h2 { font-family: "DM Serif Display", serif; font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--text); }
   .app-card { background: var(--surface); border-radius: 24px; overflow: hidden; box-shadow: 0 4px 32px rgba(0,0,0,0.3); border: 1px solid var(--border); max-width: 800px; margin: 0 auto; transition: transform 0.35s ease, box-shadow 0.35s ease; }
-  .app-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(224,169,74,0.15); }
+  .app-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(95,180,217,0.2); }
   .app-banner { width: 100%; display: block; }
   .app-body { padding: 40px 48px; }
   .app-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
@@ -111,22 +111,23 @@
   .app-desc { color: var(--text-muted); font-size: 0.98rem; line-height: 1.75; margin-bottom: 28px; font-weight: 300; }
   .app-badge {
     display: inline-flex; align-items: center; gap: 10px;
-    padding: 10px 22px; background: var(--accent); color: var(--bg-deep);
+    padding: 8px 22px 8px 10px; background: var(--coastal-blue); color: #fff;
     border-radius: 30px; font-size: 0.88rem; font-weight: 700;
     text-decoration: none; transition: background 0.2s;
   }
-  .app-badge:hover { background: var(--accent-soft); }
-  .app-badge svg { width: 18px; height: 18px; fill: var(--bg-deep); }
+  .app-badge:hover { background: #4a9bc2; }
+  .app-badge .app-badge-icon { width: 26px; height: 26px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .app-badge .app-badge-icon svg { width: 15px; height: 15px; }
 
   /* FEATURES GRID - Alkemy pattern */
   .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 8px 48px 40px; border-radius: 14px; overflow: hidden; }
   .feature-card { position: relative; background: var(--surface); padding: 26px 24px; transition: background 0.3s ease, opacity 0.3s ease; overflow: hidden; display: flex; flex-direction: column; }
   .feature-card .feature-mock { margin-top: auto; }
-  .feature-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+  .feature-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--coastal-blue); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
   .feature-card:hover::before { transform: scaleX(1); }
   .feature-card:hover { background: var(--surface-2); }
   .features-grid.has-hover .feature-card:not(:hover) { opacity: 0.5; }
-  .feature-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .feature-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--coastal-blue); margin-bottom: 10px; }
   .feature-card h4 { font-size: 1rem; font-weight: 500; color: var(--text); margin-bottom: 8px; font-family: "DM Serif Display", serif; }
   .feature-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; font-weight: 300; margin-bottom: 16px; }
   .feature-mock { border-radius: 8px; background: var(--bg-deep); border: 1px solid var(--border); padding: 12px; min-height: 56px; display: flex; align-items: center; }
@@ -312,7 +313,14 @@
         </div>
         <p class="app-desc">A calm, focused weight tracker with a custom chart, goal line, BMI calculator, mood logging, and reminders - everything you need, nothing you don't. All data stays on your device.</p>
         <a class="app-badge" href="https://play.google.com/store/apps/details?id=com.cabinroomstudio.weighly" target="_blank">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.418.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.195l11.04 10.989zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
+          <span class="app-badge-icon">
+            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+              <path d="M42.5 19.5C34 28.5 29 42 29 59.5v393c0 17.5 5 31 13.5 40l2 2L273 261.5v-5L44.5 17.5l-2 2z" fill="#00d4ff"/>
+              <path d="M348 336.5l-75-75v-5l75-75 1.7 1 88.8 50.5c25.4 14.4 25.4 38 0 52.5L349.7 335.5l-1.7 1z" fill="#ffd900"/>
+              <path d="M349.7 335.5L273 259 42.5 489.5c8.5 9 22.5 10 38 1.5l269.2-155.5" fill="#ff3a44"/>
+              <path d="M349.7 176.5L80.5 21c-15.5-8.5-29.5-7.5-38 1.5L273 259l76.7-82.5z" fill="#00e676"/>
+            </svg>
+          </span>
           Google Play
         </a>
       </div>
@@ -322,7 +330,7 @@
           <h4>Weight Chart</h4>
           <p>See your trend over time on a clean, custom-built chart.</p>
           <div class="feature-mock">
-            <svg width="100%" height="32" viewBox="0 0 160 32"><path d="M2,26 C14,26 18,20 28,20 C40,20 44,23 52,22 C64,20 68,11 78,10 C90,9 94,15 102,14 C114,12 118,7 128,6 C140,5 148,8 158,8" fill="none" stroke="#e0a94a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="100%" height="32" viewBox="0 0 160 32"><path d="M2,26 C14,26 18,20 28,20 C40,20 44,23 52,22 C64,20 68,11 78,10 C90,9 94,15 102,14 C114,12 118,7 128,6 C140,5 148,8 158,8" fill="none" stroke="#5fb4d9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
         <div class="feature-card">
@@ -330,7 +338,7 @@
           <h4>Goal Tracking</h4>
           <p>Set a target and see a goal line right on your chart.</p>
           <div class="feature-mock">
-            <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="none" stroke="#2a3844" stroke-width="4"/><circle cx="20" cy="20" r="16" fill="none" stroke="#e0a94a" stroke-width="4" stroke-dasharray="70 100" stroke-linecap="round" transform="rotate(-90 20 20)"/></svg>
+            <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="none" stroke="#2a3844" stroke-width="4"/><circle cx="20" cy="20" r="16" fill="none" stroke="#5fb4d9" stroke-width="4" stroke-dasharray="70 100" stroke-linecap="round" transform="rotate(-90 20 20)"/></svg>
           </div>
         </div>
         <div class="feature-card">
@@ -338,7 +346,7 @@
           <h4>BMI Calculator</h4>
           <p>Built-in calculator so you don't need a separate app.</p>
           <div class="feature-mock" style="font-family:'DM Sans',sans-serif;font-size:12px;color:#9fb0be;justify-content:space-between;padding:12px 14px;">
-            <span>BMI</span><span style="color:#e0a94a;font-weight:700;">22.4</span>
+            <span>BMI</span><span style="color:#5fb4d9;font-weight:700;">22.4</span>
           </div>
         </div>
         <div class="feature-card">
@@ -347,7 +355,7 @@
           <p>Log how you feel alongside every entry, no extra app needed.</p>
           <div class="feature-mock" style="gap:8px;">
             <div style="width:10px;height:10px;border-radius:50%;background:#3d5468;"></div>
-            <div style="width:10px;height:10px;border-radius:50%;background:#e0a94a;"></div>
+            <div style="width:10px;height:10px;border-radius:50%;background:#5fb4d9;"></div>
             <div style="width:10px;height:10px;border-radius:50%;background:#3d5468;"></div>
             <div style="width:10px;height:10px;border-radius:50%;background:#3d5468;"></div>
           </div>
@@ -357,7 +365,7 @@
           <h4>Gentle Nudges</h4>
           <p>Local notifications, no accounts or spam.</p>
           <div class="feature-mock" style="font-family:'DM Sans',sans-serif;font-size:11.5px;color:#9fb0be;justify-content:space-between;padding:10px 14px;">
-            <span>Log your weight</span><span style="color:#e0a94a;">7:00 AM</span>
+            <span>Log your weight</span><span style="color:#5fb4d9;">7:00 AM</span>
           </div>
         </div>
         <div class="feature-card">
@@ -365,7 +373,7 @@
           <h4>On-Device Data</h4>
           <p>Everything stays on your phone. Nothing uploaded, nothing sold.</p>
           <div class="feature-mock" style="gap:8px;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e0a94a" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5fb4d9" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
             <span style="font-family:'DM Sans',sans-serif;font-size:11.5px;color:#9fb0be;">Local only</span>
           </div>
         </div>
