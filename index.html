@@ -26,8 +26,11 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
     --bg-deep:     #141b22;
+    --bg-deep-rgb: 20,27,34;
     --surface:     #1c2730;
+    --surface-rgb: 28,39,48;
     --surface-2:   #22303b;
+    --surface-2-rgb: 34,48,59;
     --border:      #2a3844;
     --accent:      #e0a94a;
     --accent-soft: #c9954a;
@@ -39,6 +42,17 @@
   }
   html { scroll-behavior: smooth; }
   body { font-family: "DM Sans", sans-serif; color: var(--text); background: var(--bg-deep); line-height: 1.6; }
+
+  /* PAGE-WIDE CURSOR WARP */
+  .page-warp {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e0a94a' fill-opacity='0.22'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    filter: url(#spaceBend);
+    -webkit-mask-image: radial-gradient(circle 340px at var(--mx, 50%) var(--my, 50%), black 0%, transparent 75%);
+    mask-image: radial-gradient(circle 340px at var(--mx, 50%) var(--my, 50%), black 0%, transparent 75%);
+    opacity: 0; transition: opacity 0.6s ease;
+  }
+  .page-warp.active { opacity: 1; }
 
   /* NAV */
   nav {
@@ -58,9 +72,9 @@
   /* HERO */
   .hero {
     min-height: 100vh;
-    background: radial-gradient(ellipse 80% 60% at 50% 20%, #24313d 0%, var(--bg-deep) 60%);
+    background: radial-gradient(ellipse 80% 60% at 50% 20%, rgba(36,49,61,0.93) 0%, rgba(20,27,34,0.93) 60%);
     display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-align: center; padding: 120px 24px 80px; position: relative; overflow: hidden;
+    text-align: center; padding: 120px 24px 80px; position: relative; z-index: 1; overflow: hidden;
   }
   .hero::before {
     content: ""; position: absolute; inset: 0;
@@ -78,25 +92,16 @@
   }
   .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(224,169,74,0.45); }
   .wave { display: none; }
-  .hero-warp {
-    position: absolute; inset: 0; pointer-events: none;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e0a94a' fill-opacity='0.12'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    filter: url(#spaceBend);
-    -webkit-mask-image: radial-gradient(circle 260px at var(--mx, 50%) var(--my, 50%), black 0%, transparent 75%);
-    mask-image: radial-gradient(circle 260px at var(--mx, 50%) var(--my, 50%), black 0%, transparent 75%);
-    opacity: 0; transition: opacity 0.3s ease;
-  }
-  .hero:hover .hero-warp { opacity: 1; }
 
   /* ABOUT */
-  .about { background: var(--surface); padding: 96px 24px; display: flex; justify-content: center; }
+  .about { background: rgba(var(--surface-rgb), 0.94); padding: 96px 24px; display: flex; justify-content: center; position: relative; z-index: 1; }
   .about-inner { max-width: 680px; text-align: center; }
   .section-eyebrow { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
   .about h2 { font-family: "DM Serif Display", serif; font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.2; margin-bottom: 24px; color: var(--text); font-style: italic; }
   .about p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.8; font-weight: 300; }
 
   /* APPS */
-  .apps { background: var(--bg-deep); padding: 96px 24px; }
+  .apps { background: rgba(var(--bg-deep-rgb), 0.94); padding: 96px 24px; position: relative; z-index: 1; }
   .apps-inner { max-width: 960px; margin: 0 auto; }
   .apps-header { text-align: center; margin-bottom: 56px; }
   .apps-header h2 { font-family: "DM Serif Display", serif; font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--text); }
@@ -145,33 +150,89 @@
   .screenshot-item:hover::after { opacity: 1; }
   .screenshot-item img { width: 100%; display: block; }
 
-  /* PIPELINE */
-  .pipeline { background: var(--surface); overflow: hidden; min-height: 100vh; display: flex; align-items: center; }
-  .pipeline-sticky { width: 100%; display: flex; flex-direction: column; justify-content: center; padding: 130px 0 48px; }
-  .pipeline-head { text-align: center; margin-bottom: 36px; flex-shrink: 0; padding: 0 24px; }
-  .pipeline-head h2 { font-family: "DM Serif Display", serif; font-style: italic; font-size: clamp(2rem, 5vw, 3.2rem); color: var(--text); margin-bottom: 8px; }
-  .pipeline-sub { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; }
-  .pipeline-track-wrap { position: relative; flex-shrink: 0; }
-  .pipeline-track {
-    display: flex; align-items: flex-end; height: 320px; padding: 40px 64px;
-    gap: 96px; position: relative;
-    overflow-x: auto; overflow-y: hidden;
-    scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+  /* ROADMAP ("What's Next") */
+  .roadmap { background: rgba(var(--surface-rgb), 0.5); padding: 130px 24px 120px; position: relative; z-index: 1; overflow: hidden; }
+  .roadmap-head { text-align: center; margin-bottom: 72px; }
+  .roadmap-head h2 { font-family: "DM Serif Display", serif; font-style: italic; font-size: clamp(2rem, 5vw, 3.2rem); color: var(--text); margin-bottom: 8px; }
+  .roadmap-sub { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; }
+  .roadmap-inner { max-width: 680px; margin: 0 auto; }
+  .roadmap-list { position: relative; display: flex; flex-direction: column; gap: 48px; }
+  .roadmap-connector {
+    position: absolute; left: 22px; top: 22px; bottom: 22px; width: 2px; border-radius: 2px;
+    background: linear-gradient(to bottom, #4fd1c5, #ff6f61, #b28dff, #f4c95d, #5fb4d9, rgba(111,125,137,0.4));
+    transform: scaleY(0); transform-origin: top; opacity: 0.55;
+    transition: transform 1.6s cubic-bezier(.16,1,.3,1);
   }
-  .pipeline-track::-webkit-scrollbar { display: none; }
-  .pipeline-line { position: absolute; top: 0; left: 0; pointer-events: none; overflow: visible; }
-  .pipeline-line path { fill: none; stroke: var(--border); stroke-width: 1.5; }
-  .pipeline-item { width: 280px; flex-shrink: 0; position: relative; align-self: flex-end; scroll-snap-align: center; }
-  .pipeline-item.is-top { align-self: flex-start; }
-  .pipeline-dot { width: 11px; height: 11px; border-radius: 50%; background: var(--accent); margin-bottom: 32px; box-shadow: 0 0 0 4px rgba(224,169,74,0.15); }
-  .pipeline-item.is-planning .pipeline-dot { background: var(--text-faint); box-shadow: none; }
-  .pipeline-status { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
-  .pipeline-item.is-planning .pipeline-status { color: var(--text-faint); }
-  .pipeline-item h3 { font-family: "JetBrains Mono", monospace; font-style: normal; font-weight: 600; font-size: 1.25rem; color: var(--text); margin-bottom: 10px; }
-  .pipeline-item p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; font-weight: 300; }
-  .pipeline-item.is-more { display: flex; align-items: center; justify-content: center; align-self: center; }
-  .pipeline-item.is-more span { color: var(--text-faint); font-family: "DM Serif Display", serif; font-style: italic; font-size: 1.1rem; }
+  .roadmap-connector.visible { transform: scaleY(1); }
+  .roadmap-item {
+    display: flex; align-items: flex-start; gap: 24px; position: relative;
+    opacity: 0; transform: translateY(26px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .roadmap-item.visible { opacity: 1; transform: none; }
+  .roadmap-node {
+    width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; margin-top: 2px;
+    background: rgba(var(--surface-2-rgb), 0.85); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; position: relative; z-index: 2;
+    box-shadow: 0 0 0 5px rgba(var(--surface-rgb), 0.6);
+    transition: transform 0.4s ease, border-color 0.4s ease;
+  }
+  .roadmap-item:hover .roadmap-node { transform: scale(1.14); border-color: var(--item-color, var(--accent)); }
+  .roadmap-item.is-active .roadmap-node { animation: roadmapBreathe 2.6s ease-in-out infinite; }
+  @keyframes roadmapBreathe {
+    0%, 100% { box-shadow: 0 0 0 5px rgba(var(--surface-rgb), 0.6), 0 0 0 0 var(--item-glow, transparent); }
+    50% { box-shadow: 0 0 0 5px rgba(var(--surface-rgb), 0.6), 0 0 16px 4px var(--item-glow, transparent); }
+  }
+  .roadmap-icon { width: 20px; height: 20px; color: var(--item-color, var(--text-faint)); }
+  .roadmap-item.is-planning .roadmap-icon { color: var(--text-faint); opacity: 0.7; }
+  .roadmap-card {
+    flex: 1; position: relative; overflow: hidden; border-radius: 20px; padding: 26px 28px;
+    background: rgba(var(--surface-2-rgb), 0.4);
+    backdrop-filter: blur(20px) saturate(150%); -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    transform-style: preserve-3d; will-change: transform;
+  }
+  .roadmap-card::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.05; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .roadmap-item:hover .roadmap-card {
+    border-color: var(--item-color, var(--border));
+    box-shadow: 0 24px 48px -16px var(--item-glow-strong, rgba(0,0,0,0.4));
+  }
+  .roadmap-status { display: flex; align-items: center; gap: 8px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--item-color, var(--accent)); margin-bottom: 12px; }
+  .roadmap-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--item-color, var(--accent)); flex-shrink: 0; }
+  .roadmap-item.is-planning .roadmap-status { color: var(--text-faint); }
+  .roadmap-item.is-planning .roadmap-status::before { background: var(--text-faint); }
+  .roadmap-card h3 { font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 1.2rem; color: var(--text); margin-bottom: 8px; }
+  .roadmap-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; font-weight: 300; }
+  .roadmap-item.is-more { opacity: 1; transform: none; }
+  .roadmap-item.is-more .roadmap-node { border-style: dashed; }
+  .roadmap-item.is-more .roadmap-card {
+    display: flex; align-items: center; justify-content: center; min-height: 44px;
+    background: transparent; backdrop-filter: none; border: 1px dashed var(--border); box-shadow: none;
+  }
+  .roadmap-item.is-more .roadmap-card span { color: var(--text-faint); font-family: "DM Serif Display", serif; font-style: italic; font-size: 1rem; }
+
+  /* per-app icon micro-animations */
+  .icon-scan .scan-line { animation: scanSweep 2.4s ease-in-out infinite; }
+  @keyframes scanSweep { 0%, 100% { transform: translateY(-5px); opacity: 0.4; } 50% { transform: translateY(5px); opacity: 1; } }
+  .icon-radar .radar-ring { transform-origin: center; animation: radarPulse 2.2s ease-out infinite; }
+  .icon-radar .radar-ring:nth-child(2) { animation-delay: 0.5s; }
+  .icon-radar .radar-ring:nth-child(3) { animation-delay: 1s; }
+  @keyframes radarPulse { 0% { transform: scale(0.4); opacity: 1; } 100% { transform: scale(1.3); opacity: 0; } }
+  .icon-knight { animation: knightBounce 1.8s ease-in-out infinite; transform-origin: bottom center; }
+  @keyframes knightBounce { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-3px) rotate(-4deg); } }
+  .icon-quiz .quiz-mark { animation: quizFlip 3s ease-in-out infinite; transform-origin: center; }
+  @keyframes quizFlip { 0%, 40%, 100% { transform: rotateY(0deg); } 50% { transform: rotateY(180deg); } }
+  .icon-weather .weather-cloud { animation: cloudDrift 4s ease-in-out infinite; }
+  .icon-weather .weather-sun { animation: sunPulse 3s ease-in-out infinite; transform-origin: center; }
+  @keyframes cloudDrift { 0%, 100% { transform: translateX(-2px); } 50% { transform: translateX(2px); } }
+  @keyframes sunPulse { 0%, 100% { transform: scale(1); opacity: 0.85; } 50% { transform: scale(1.12); opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    .icon-scan .scan-line, .icon-radar .radar-ring, .icon-knight, .icon-quiz .quiz-mark, .icon-weather .weather-cloud, .icon-weather .weather-sun, .roadmap-item.is-active .roadmap-node { animation: none; }
+  }
 
   /* FAQ */
   .faq-inner { max-width: 720px; margin: 0 auto; padding-top: 48px; border-top: 1px solid var(--border); }
@@ -188,7 +249,7 @@
   .faq-answer p { padding: 0 26px 22px; color: var(--text-muted); font-size: 0.92rem; line-height: 1.7; font-weight: 300; }
 
   /* FEEDBACK */
-  .feedback { background: var(--surface); padding: 96px 24px; text-align: center; }
+  .feedback { background: rgba(var(--surface-rgb), 0.94); padding: 96px 24px; text-align: center; position: relative; z-index: 1; }
   .feedback-inner { max-width: 700px; margin: 0 auto; }
   .feedback h2 { font-family: "DM Serif Display", serif; font-size: clamp(1.8rem, 4vw, 2.8rem); margin-bottom: 16px; color: var(--text); }
   .feedback-sub { color: var(--text-muted); font-size: 0.98rem; margin-bottom: 40px; font-weight: 300; }
@@ -214,7 +275,7 @@
   .modal-status.error { color: #e0766a; }
 
   /* FOOTER */
-  footer { background: var(--bg-deep); border-top: 1px solid var(--border); padding: 56px 48px; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; }
+  footer { background: rgba(var(--bg-deep-rgb), 0.96); border-top: 1px solid var(--border); padding: 56px 48px; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center; position: relative; z-index: 1; }
   .footer-logo { font-family: "DM Serif Display", serif; font-size: 1.4rem; color: var(--text); display: flex; align-items: center; gap: 10px; }
   .footer-mark { width: 24px; height: 24px; flex-shrink: 0; }
   .footer-links { display: flex; gap: 32px; list-style: none; flex-wrap: wrap; justify-content: center; align-items: center; }
@@ -235,7 +296,6 @@
 
   @media (max-width: 900px) {
     .features-grid { grid-template-columns: repeat(2, 1fr); margin: 8px 24px 32px; }
-    .pipeline-track { gap: 72px; padding: 32px 32px; }
   }
 
   @media (max-width: 640px) {
@@ -246,13 +306,23 @@
     .screenshots-row { padding: 8px 24px 16px; }
     .screenshots-label { padding: 0 24px; }
     footer { padding: 40px 24px; }
-    .pipeline-sticky { padding: 110px 0 40px; }
-    .pipeline-item { width: 240px; }
-    .pipeline-track { gap: 56px; padding: 28px 24px; height: 300px; }
+    .roadmap { padding: 110px 20px 90px; }
+    .roadmap-card { padding: 20px 20px; }
+    .roadmap-item { gap: 16px; }
+    .roadmap-node { width: 36px; height: 36px; }
+    .roadmap-connector { left: 18px; }
   }
 </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute">
+  <filter id="spaceBend" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="7" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="65" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+<div class="page-warp" id="pageWarp"></div>
 
 <nav>
   <a class="nav-logo" href="#">
@@ -270,13 +340,6 @@
 </nav>
 
 <section class="hero" id="hero">
-  <svg width="0" height="0" style="position:absolute">
-    <filter id="spaceBend" x="-20%" y="-20%" width="140%" height="140%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="7" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="45" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-  </svg>
-  <div class="hero-warp" id="heroWarp"></div>
   <p class="hero-eyebrow">&lt;/&gt; Android App Dev Studio</p>
   <h1>Apps built with <em>purpose.</em></h1>
   <p class="hero-sub">We make focused apps that work.</p>
@@ -422,48 +485,90 @@
   </div>
 </section>
 
-<section class="pipeline" id="pipeline">
-  <div class="pipeline-sticky">
-    <div class="pipeline-head reveal">
+<section class="roadmap" id="pipeline">
+  <div class="roadmap-inner">
+    <div class="roadmap-head reveal">
       <h2>What's Next</h2>
-      <p class="pipeline-sub">Being built carefully - no release dates, only when they're ready.</p>
+      <p class="roadmap-sub">Being built carefully - no release dates, only when they're ready.</p>
     </div>
-    <div class="pipeline-track-wrap">
-      <div class="pipeline-track" id="pipelineTrack">
-        <svg class="pipeline-line" id="pipelineLine"><path d="" /></svg>
-        <div class="pipeline-item is-top">
-          <div class="pipeline-dot"></div>
-          <div class="pipeline-status">In development</div>
+    <div class="roadmap-list" id="roadmapList">
+      <div class="roadmap-connector" id="roadmapConnector"></div>
+
+      <div class="roadmap-item is-active" style="--item-color:#4fd1c5; --item-glow:rgba(79,209,197,0.35); --item-glow-strong:rgba(79,209,197,0.45);">
+        <div class="roadmap-node">
+          <svg class="roadmap-icon icon-scan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="3" width="14" height="18" rx="2"/>
+            <line class="scan-line" x1="7" y1="12" x2="17" y2="12"/>
+          </svg>
+        </div>
+        <div class="roadmap-card">
+          <div class="roadmap-status">In development</div>
           <h3>Doc Scanner</h3>
           <p>A fast, private document scanner that works entirely on-device. No cloud upload required.</p>
         </div>
-        <div class="pipeline-item">
-          <div class="pipeline-dot"></div>
-          <div class="pipeline-status">In development</div>
+      </div>
+
+      <div class="roadmap-item is-active" style="--item-color:#ff6f61; --item-glow:rgba(255,111,97,0.35); --item-glow-strong:rgba(255,111,97,0.45);">
+        <div class="roadmap-node">
+          <svg class="roadmap-icon icon-radar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle class="radar-ring" cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
+            <circle class="radar-ring" cx="12" cy="12" r="5.5"/>
+            <circle class="radar-ring" cx="12" cy="12" r="9"/>
+          </svg>
+        </div>
+        <div class="roadmap-card">
+          <div class="roadmap-status">In development</div>
           <h3>News Aggregator</h3>
           <p>A clean RSS reader that pulls from public feeds you choose - no algorithmic noise, no doom scroll.</p>
         </div>
-        <div class="pipeline-item is-planning is-top">
-          <div class="pipeline-dot"></div>
-          <div class="pipeline-status">Design</div>
+      </div>
+
+      <div class="roadmap-item is-planning" style="--item-color:#b28dff; --item-glow:rgba(178,141,255,0.3); --item-glow-strong:rgba(178,141,255,0.4);">
+        <div class="roadmap-node">
+          <svg class="roadmap-icon icon-knight" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 21h10M8 21c-.5-4 .5-6 2-7-1-1.5-1.5-3-1-5 .5-2 2.5-3.5 5-3.5 0 1.5-.5 2.5-1.5 3 1.5.5 2.5 2 2.5 4 0 3-1 6.5-1 8.5"/>
+            <circle cx="14" cy="7" r="0.6" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="roadmap-card">
+          <div class="roadmap-status">Design</div>
           <h3>Chess Puzzle</h3>
           <p>Daily tactics puzzles to sharpen your game. No accounts, no clock pressure, just the board.</p>
         </div>
-        <div class="pipeline-item is-planning">
-          <div class="pipeline-dot"></div>
-          <div class="pipeline-status">Ideating</div>
+      </div>
+
+      <div class="roadmap-item is-planning" style="--item-color:#f4c95d; --item-glow:rgba(244,201,93,0.3); --item-glow-strong:rgba(244,201,93,0.4);">
+        <div class="roadmap-node">
+          <svg class="roadmap-icon icon-quiz" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <path class="quiz-mark" d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.9.4-1.5.9-1.5 2" />
+            <circle cx="12" cy="17" r="0.6" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="roadmap-card">
+          <div class="roadmap-status">Ideating</div>
           <h3>Quiz App</h3>
           <p>Quick, focused quizzes on topics you pick. No accounts, no ads, no clutter.</p>
         </div>
-        <div class="pipeline-item is-planning is-top">
-          <div class="pipeline-dot"></div>
-          <div class="pipeline-status">Ideating</div>
+      </div>
+
+      <div class="roadmap-item is-planning" style="--item-color:#5fb4d9; --item-glow:rgba(95,180,217,0.3); --item-glow-strong:rgba(95,180,217,0.4);">
+        <div class="roadmap-node">
+          <svg class="roadmap-icon icon-weather" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle class="weather-sun" cx="9" cy="8" r="3"/>
+            <path class="weather-cloud" d="M6 17h10a3.5 3.5 0 0 0 .5-6.96A5 5 0 0 0 7.1 12.06 3.5 3.5 0 0 0 6 17z"/>
+          </svg>
+        </div>
+        <div class="roadmap-card">
+          <div class="roadmap-status">Ideating</div>
           <h3>Weather App</h3>
           <p>Simple, accurate forecasts. Nothing more than what you actually need.</p>
         </div>
-        <div class="pipeline-item is-more">
-          <span>More coming soon</span>
-        </div>
+      </div>
+
+      <div class="roadmap-item is-more">
+        <div class="roadmap-node"><span style="color:var(--text-faint); font-size:1.1rem; line-height:1;">+</span></div>
+        <div class="roadmap-card"><span>More coming soon</span></div>
       </div>
     </div>
   </div>
@@ -543,88 +648,56 @@
     });
   }
 
-  // Cursor space-bending effect in hero
-  const heroSection = document.getElementById('hero');
-  if (heroSection) {
-    heroSection.addEventListener('mousemove', (e) => {
-      const rect = heroSection.getBoundingClientRect();
-      heroSection.style.setProperty('--mx', `${e.clientX - rect.left}px`);
-      heroSection.style.setProperty('--my', `${e.clientY - rect.top}px`);
+  // Page-wide cursor space-bending effect
+  const pageWarp = document.getElementById('pageWarp');
+  if (pageWarp) {
+    window.addEventListener('mousemove', (e) => {
+      document.documentElement.style.setProperty('--mx', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--my', `${e.clientY}px`);
+      pageWarp.classList.add('active');
+    }, { passive: true });
+  }
+
+  // Roadmap: staggered reveal + connector line draw-in on scroll
+  const roadmapList = document.getElementById('roadmapList');
+  const roadmapConnector = document.getElementById('roadmapConnector');
+  if (roadmapList) {
+    const roadmapItems = roadmapList.querySelectorAll('.roadmap-item');
+    const roadmapObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          roadmapObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -60px 0px' });
+    roadmapItems.forEach((item, i) => {
+      item.style.transitionDelay = `${Math.min(i * 90, 360)}ms`;
+      roadmapObserver.observe(item);
     });
-  }
 
-  // Pipeline: connecting curve + scroll-to-horizontal behavior
-  const pipelineSection = document.getElementById('pipeline');
-  const pipelineTrack = document.getElementById('pipelineTrack');
-  const pipelineLine = document.getElementById('pipelineLine');
+    const connectorObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          roadmapConnector.classList.add('visible');
+          connectorObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+    connectorObserver.observe(roadmapList);
 
-  function drawPipelineLine() {
-    if (!pipelineTrack || !pipelineLine) return;
-    // Measure from the track's own content box (scrollLeft = 0) so the path
-    // lives in the same coordinate space that scrolls together with the dots -
-    // this is what keeps the curve permanently attached to the dots while scrolling.
-    const prevScroll = pipelineTrack.scrollLeft;
-    pipelineTrack.scrollLeft = 0;
-
-    const trackWidth = pipelineTrack.scrollWidth;
-    const trackHeight = pipelineTrack.clientHeight;
-    pipelineLine.setAttribute('width', trackWidth);
-    pipelineLine.setAttribute('height', trackHeight);
-    pipelineLine.setAttribute('viewBox', `0 0 ${trackWidth} ${trackHeight}`);
-
-    const trackRect = pipelineTrack.getBoundingClientRect();
-    const dots = pipelineTrack.querySelectorAll('.pipeline-dot');
-    const points = Array.from(dots).map(dot => {
-      const r = dot.getBoundingClientRect();
-      return [r.left - trackRect.left + r.width / 2 + pipelineTrack.scrollLeft, r.top - trackRect.top + r.height / 2];
+    // Subtle 3D tilt toward cursor on each roadmap card
+    roadmapItems.forEach(item => {
+      const card = item.querySelector('.roadmap-card');
+      if (!card || item.classList.contains('is-more')) return;
+      card.addEventListener('mousemove', (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `perspective(700px) rotateX(${(-py * 6).toFixed(2)}deg) rotateY(${(px * 6).toFixed(2)}deg) translateY(-4px)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
     });
-    const path = pipelineLine.querySelector('path');
-    if (points.length < 2) { path.setAttribute('d', ''); }
-    else {
-      let d = `M ${points[0][0]} ${points[0][1]}`;
-      for (let i = 1; i < points.length; i++) {
-        const [x0, y0] = points[i - 1];
-        const [x1, y1] = points[i];
-        const mx = (x0 + x1) / 2;
-        d += ` C ${mx} ${y0}, ${mx} ${y1}, ${x1} ${y1}`;
-      }
-      path.setAttribute('d', d);
-    }
-
-    pipelineTrack.scrollLeft = prevScroll;
-  }
-
-  // While the pipeline section fills the viewport, turn vertical wheel scroll
-  // into horizontal panning of the track, until "More coming" is reached -
-  // then hand scrolling back to the page so it continues on to Feedback.
-  let pipelineActive = false;
-  if (pipelineSection) {
-    const pipelineObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { pipelineActive = entry.intersectionRatio > 0.95; });
-    }, { threshold: [0, 0.95, 1] });
-    pipelineObserver.observe(pipelineSection);
-  }
-
-  if (pipelineSection && pipelineTrack) {
-    window.addEventListener('wheel', (e) => {
-      if (!pipelineActive) return;
-      const maxScroll = pipelineTrack.scrollWidth - pipelineTrack.clientWidth;
-      if (maxScroll <= 0) return;
-      const atStart = pipelineTrack.scrollLeft <= 0;
-      const atEnd = pipelineTrack.scrollLeft >= maxScroll - 1;
-      const scrollingForward = e.deltaY > 0;
-      if ((scrollingForward && !atEnd) || (!scrollingForward && !atStart)) {
-        e.preventDefault();
-        pipelineTrack.scrollLeft += e.deltaY;
-      }
-    }, { passive: false });
-
-    let resizeTimer;
-    const redraw = () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(drawPipelineLine, 100); };
-    window.addEventListener('load', drawPipelineLine);
-    window.addEventListener('resize', redraw);
-    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(drawPipelineLine); }
-    setTimeout(drawPipelineLine, 100);
   }
 
   function toggleFaq(btn) {
