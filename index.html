@@ -46,10 +46,10 @@
   /* PAGE-WIDE CURSOR WARP */
   .page-warp {
     position: fixed; inset: 0; z-index: 0; pointer-events: none;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e0a94a' fill-opacity='0.22'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='260'%20height='260'%3E%3Cg%20fill='%23e0a94a'%20fill-opacity='0.3'%20font-family='monospace'%20font-weight='700'%3E%3Ctext%20x='10'%20y='40'%20font-size='32'%3E+%3C/text%3E%3Ctext%20x='95'%20y='28'%20font-size='26'%3E×%3C/text%3E%3Ctext%20x='175'%20y='55'%20font-size='28'%3E÷%3C/text%3E%3Ctext%20x='40'%20y='100'%20font-size='26'%3E=%3C/text%3E%3Ctext%20x='135'%20y='118'%20font-size='32'%3E%25%3C/text%3E%3Ctext%20x='215'%20y='95'%20font-size='24'%3E√%3C/text%3E%3Ctext%20x='20'%20y='170'%20font-size='30'%3Eπ%3C/text%3E%3Ctext%20x='105'%20y='190'%20font-size='26'%3E∑%3C/text%3E%3Ctext%20x='185'%20y='175'%20font-size='30'%3E∞%3C/text%3E%3Ctext%20x='60'%20y='240'%20font-size='26'%3E-%3C/text%3E%3Ctext%20x='150'%20y='245'%20font-size='28'%3E+%3C/text%3E%3Ctext%20x='225'%20y='225'%20font-size='22'%3E≈%3C/text%3E%3C/g%3E%3C/svg%3E");
     filter: url(#spaceBend);
-    -webkit-mask-image: radial-gradient(circle 340px at var(--mx, 50%) var(--my, 50%), black 0%, transparent 75%);
-    mask-image: radial-gradient(circle 340px at var(--mx, 50%) var(--my, 50%), black 0%, transparent 75%);
+    -webkit-mask-image: radial-gradient(circle 360px at var(--mx, 50%) var(--my, 50%), black 0%, transparent 75%);
+    mask-image: radial-gradient(circle 360px at var(--mx, 50%) var(--my, 50%), black 0%, transparent 75%);
     opacity: 0; transition: opacity 0.6s ease;
   }
   .page-warp.active { opacity: 1; }
@@ -80,6 +80,7 @@
     content: ""; position: absolute; inset: 0;
     background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
+  .hero-content { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
   .hero-eyebrow { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
   .hero h1 { font-family: "DM Serif Display", serif; font-size: clamp(2.8rem, 7vw, 5.5rem); color: var(--text); line-height: 1.08; max-width: 800px; margin-bottom: 24px; }
   .hero h1 em { font-style: italic; color: var(--accent); }
@@ -92,6 +93,15 @@
   }
   .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(224,169,74,0.45); }
   .wave { display: none; }
+  .hero-warp {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='260'%20height='260'%3E%3Cg%20fill='%23e0a94a'%20fill-opacity='0.45'%20font-family='monospace'%20font-weight='700'%3E%3Ctext%20x='10'%20y='40'%20font-size='32'%3E+%3C/text%3E%3Ctext%20x='95'%20y='28'%20font-size='26'%3E×%3C/text%3E%3Ctext%20x='175'%20y='55'%20font-size='28'%3E÷%3C/text%3E%3Ctext%20x='40'%20y='100'%20font-size='26'%3E=%3C/text%3E%3Ctext%20x='135'%20y='118'%20font-size='32'%3E%25%3C/text%3E%3Ctext%20x='215'%20y='95'%20font-size='24'%3E√%3C/text%3E%3Ctext%20x='20'%20y='170'%20font-size='30'%3Eπ%3C/text%3E%3Ctext%20x='105'%20y='190'%20font-size='26'%3E∑%3C/text%3E%3Ctext%20x='185'%20y='175'%20font-size='30'%3E∞%3C/text%3E%3Ctext%20x='60'%20y='240'%20font-size='26'%3E-%3C/text%3E%3Ctext%20x='150'%20y='245'%20font-size='28'%3E+%3C/text%3E%3Ctext%20x='225'%20y='225'%20font-size='22'%3E≈%3C/text%3E%3C/g%3E%3C/svg%3E");
+    filter: url(#spaceBendHero);
+    -webkit-mask-image: radial-gradient(circle 380px at var(--hero-mx, 50%) var(--hero-my, 50%), black 0%, transparent 75%);
+    mask-image: radial-gradient(circle 380px at var(--hero-mx, 50%) var(--hero-my, 50%), black 0%, transparent 75%);
+    opacity: 0; transition: opacity 0.5s ease;
+  }
+  .hero-warp.active { opacity: 1; }
 
   /* ABOUT */
   .about { background: rgba(var(--surface-rgb), 0.94); padding: 96px 24px; display: flex; justify-content: center; position: relative; z-index: 1; }
@@ -140,88 +150,100 @@
   /* SCREENSHOTS */
   .screenshots-wrap { padding: 0 0 40px; }
   .screenshots-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; padding: 0 48px; }
-  .screenshots-row { display: flex; gap: 16px; overflow-x: auto; padding: 8px 48px 16px; scroll-snap-type: x proximity; scroll-padding-left: 48px; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
-  .screenshots-row::-webkit-scrollbar { height: 4px; }
-  .screenshots-row::-webkit-scrollbar-track { background: transparent; }
-  .screenshots-row::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
-  .screenshot-item { position: relative; flex-shrink: 0; scroll-snap-align: start; width: 180px; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.3); transition: box-shadow 0.25s ease; }
+  .screenshots-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    padding: 8px 48px 16px;
+  }
+  .screenshot-item {
+    position: relative; border-radius: 16px; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
   .screenshot-item::after { content: ""; position: absolute; inset: 0; background: var(--coastal-blue-soft); opacity: 0; transition: opacity 0.25s ease; pointer-events: none; }
-  .screenshot-item:hover { box-shadow: 0 0 0 2px var(--coastal-blue), 0 8px 28px var(--coastal-blue-soft); }
+  .screenshot-item:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 0 0 2px var(--coastal-blue), 0 20px 36px rgba(0,0,0,0.4), 0 8px 28px var(--coastal-blue-soft); z-index: 2; }
   .screenshot-item:hover::after { opacity: 1; }
   .screenshot-item img { width: 100%; display: block; }
 
   /* ROADMAP ("What's Next") */
-  .roadmap { background: rgba(var(--surface-rgb), 0.5); padding: 130px 24px 120px; position: relative; z-index: 1; overflow: hidden; }
-  .roadmap-head { text-align: center; margin-bottom: 72px; }
+  .roadmap { background: rgba(var(--surface-rgb), 0.5); padding: 130px 24px 140px; position: relative; z-index: 1; overflow: hidden; }
+  .roadmap-warp {
+    position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='260'%20height='260'%3E%3Cg%20fill='%235fb4d9'%20fill-opacity='0.4'%20font-family='monospace'%20font-weight='700'%3E%3Ctext%20x='10'%20y='42'%20font-size='30'%3E%7B%3C/text%3E%3Ctext%20x='95'%20y='30'%20font-size='26'%3E%7D%3C/text%3E%3Ctext%20x='175'%20y='52'%20font-size='24'%3E%23%3C/text%3E%3Ctext%20x='25'%20y='98'%20font-size='22'%3E%2F%2F%3C/text%3E%3Ctext%20x='120'%20y='108'%20font-size='30'%3E%3B%3C/text%3E%3Ctext%20x='205'%20y='92'%20font-size='24'%3E%24%3C/text%3E%3Ctext%20x='15'%20y='168'%20font-size='26'%3E01%3C/text%3E%3Ctext%20x='100'%20y='182'%20font-size='24'%3E_%3C/text%3E%3Ctext%20x='185'%20y='172'%20font-size='32'%3E%28%3C/text%3E%3Ctext%20x='55'%20y='238'%20font-size='28'%3E%29%3C/text%3E%3Ctext%20x='150'%20y='242'%20font-size='24'%3E%23%3C/text%3E%3Ctext%20x='225'%20y='222'%20font-size='22'%3E10%3C/text%3E%3C/g%3E%3C/svg%3E");
+    filter: url(#spaceBendCode);
+    -webkit-mask-image: radial-gradient(circle 320px at var(--roadmap-mx, 50%) var(--roadmap-my, 50%), black 0%, transparent 75%);
+    mask-image: radial-gradient(circle 320px at var(--roadmap-mx, 50%) var(--roadmap-my, 50%), black 0%, transparent 75%);
+    opacity: 0; transition: opacity 0.5s ease;
+  }
+  .roadmap-warp.active { opacity: 1; }
+  .roadmap-head { text-align: center; margin-bottom: 72px; position: relative; z-index: 1; }
   .roadmap-head h2 { font-family: "DM Serif Display", serif; font-style: italic; font-size: clamp(2rem, 5vw, 3.2rem); color: var(--text); margin-bottom: 8px; }
   .roadmap-sub { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; }
-  .roadmap-inner { max-width: 680px; margin: 0 auto; }
-  .roadmap-list { position: relative; display: flex; flex-direction: column; gap: 48px; }
-  .roadmap-connector {
-    position: absolute; left: 22px; top: 22px; bottom: 22px; width: 2px; border-radius: 2px;
-    background: linear-gradient(to bottom, #4fd1c5, #ff6f61, #b28dff, #f4c95d, #5fb4d9, rgba(111,125,137,0.4));
-    transform: scaleY(0); transform-origin: top; opacity: 0.55;
-    transition: transform 1.6s cubic-bezier(.16,1,.3,1);
+  .roadmap-inner { max-width: 1120px; margin: 0 auto; position: relative; z-index: 1; }
+  .roadmap-track {
+    position: relative; display: flex; align-items: center; justify-content: space-between;
+    height: 220px; padding: 0 4px;
   }
-  .roadmap-connector.visible { transform: scaleY(1); }
+  .roadmap-connector-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+  .roadmap-connector-svg path {
+    fill: none; stroke-width: 2; opacity: 0.6; stroke-dasharray: 1400; stroke-dashoffset: 1400;
+    transition: stroke-dashoffset 1.8s cubic-bezier(.16,1,.3,1);
+  }
+  .roadmap-connector-svg.visible path { stroke-dashoffset: 0; }
   .roadmap-item {
-    display: flex; align-items: flex-start; gap: 24px; position: relative;
-    opacity: 0; transform: translateY(26px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    position: relative; display: flex; flex-direction: column; align-items: center;
+    flex: 1 1 0; min-width: 0;
+    opacity: 0; transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
   .roadmap-item.visible { opacity: 1; transform: none; }
+  .roadmap-item.is-top { align-self: flex-start; }
+  .roadmap-item.is-bottom { align-self: flex-end; }
   .roadmap-node {
-    width: 44px; height: 44px; flex-shrink: 0; border-radius: 50%; margin-top: 2px;
+    width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0; cursor: pointer;
     background: rgba(var(--surface-2-rgb), 0.85); border: 1px solid var(--border);
     display: flex; align-items: center; justify-content: center; position: relative; z-index: 2;
     box-shadow: 0 0 0 5px rgba(var(--surface-rgb), 0.6);
-    transition: transform 0.4s ease, border-color 0.4s ease;
+    transition: transform 0.35s ease, border-color 0.35s ease;
   }
-  .roadmap-item:hover .roadmap-node { transform: scale(1.14); border-color: var(--item-color, var(--accent)); }
+  .roadmap-item:hover .roadmap-node, .roadmap-item.popover-open .roadmap-node { transform: scale(1.16); border-color: var(--item-color, var(--accent)); }
   .roadmap-item.is-active .roadmap-node { animation: roadmapBreathe 2.6s ease-in-out infinite; }
   @keyframes roadmapBreathe {
     0%, 100% { box-shadow: 0 0 0 5px rgba(var(--surface-rgb), 0.6), 0 0 0 0 var(--item-glow, transparent); }
     50% { box-shadow: 0 0 0 5px rgba(var(--surface-rgb), 0.6), 0 0 16px 4px var(--item-glow, transparent); }
   }
-  .roadmap-icon { width: 20px; height: 20px; color: var(--item-color, var(--text-faint)); }
+  .roadmap-icon { width: 22px; height: 22px; color: var(--item-color, var(--text-faint)); }
   .roadmap-item.is-planning .roadmap-icon { color: var(--text-faint); opacity: 0.7; }
-  .roadmap-card {
-    flex: 1; position: relative; overflow: hidden; border-radius: 20px; padding: 26px 28px;
-    background: rgba(var(--surface-2-rgb), 0.4);
-    backdrop-filter: blur(20px) saturate(150%); -webkit-backdrop-filter: blur(20px) saturate(150%);
-    border: 1px solid rgba(255,255,255,0.08);
-    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-    transform-style: preserve-3d; will-change: transform;
-  }
-  .roadmap-card::after {
-    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.05; mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-  .roadmap-item:hover .roadmap-card {
-    border-color: var(--item-color, var(--border));
-    box-shadow: 0 24px 48px -16px var(--item-glow-strong, rgba(0,0,0,0.4));
-  }
-  .roadmap-status { display: flex; align-items: center; gap: 8px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--item-color, var(--accent)); margin-bottom: 12px; }
-  .roadmap-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--item-color, var(--accent)); flex-shrink: 0; }
+  .roadmap-label { margin-top: 12px; text-align: center; }
+  .roadmap-label h3 { font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 0.82rem; color: var(--text); white-space: nowrap; }
+  .roadmap-status { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--item-color, var(--accent)); margin-top: 4px; }
+  .roadmap-status::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--item-color, var(--accent)); flex-shrink: 0; }
   .roadmap-item.is-planning .roadmap-status { color: var(--text-faint); }
   .roadmap-item.is-planning .roadmap-status::before { background: var(--text-faint); }
-  .roadmap-card h3 { font-family: "JetBrains Mono", monospace; font-weight: 600; font-size: 1.2rem; color: var(--text); margin-bottom: 8px; }
-  .roadmap-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; font-weight: 300; }
-  .roadmap-item.is-more { opacity: 1; transform: none; }
-  .roadmap-item.is-more .roadmap-node { border-style: dashed; }
-  .roadmap-item.is-more .roadmap-card {
-    display: flex; align-items: center; justify-content: center; min-height: 44px;
-    background: transparent; backdrop-filter: none; border: 1px dashed var(--border); box-shadow: none;
+
+  .roadmap-popover {
+    position: absolute; left: 50%; width: 220px; transform: translateX(-50%) translateY(6px); z-index: 5;
+    background: rgba(var(--surface-2-rgb), 0.7); backdrop-filter: blur(20px) saturate(150%); -webkit-backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 14px 16px;
+    box-shadow: 0 20px 40px -12px rgba(0,0,0,0.5);
+    opacity: 0; pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease;
   }
-  .roadmap-item.is-more .roadmap-card span { color: var(--text-faint); font-family: "DM Serif Display", serif; font-style: italic; font-size: 1rem; }
+  .roadmap-item.is-top .roadmap-popover { top: calc(100% + 14px); }
+  .roadmap-item.is-bottom .roadmap-popover { bottom: calc(100% + 14px); transform: translateX(-50%) translateY(-6px); }
+  .roadmap-item:hover .roadmap-popover, .roadmap-item.popover-open .roadmap-popover {
+    opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0);
+  }
+  .roadmap-popover p { color: var(--text-muted); font-size: 0.82rem; line-height: 1.5; font-weight: 300; }
+
+  .roadmap-item.is-more .roadmap-node { border-style: dashed; cursor: default; }
+  .roadmap-item.is-more .roadmap-label span { color: var(--text-faint); font-family: "DM Serif Display", serif; font-style: italic; font-size: 0.85rem; }
 
   /* per-app icon micro-animations */
   .icon-scan .scan-line { animation: scanSweep 2.4s ease-in-out infinite; }
   @keyframes scanSweep { 0%, 100% { transform: translateY(-5px); opacity: 0.4; } 50% { transform: translateY(5px); opacity: 1; } }
-  .icon-radar .radar-ring { transform-origin: center; animation: radarPulse 2.2s ease-out infinite; }
-  .icon-radar .radar-ring:nth-child(2) { animation-delay: 0.5s; }
-  .icon-radar .radar-ring:nth-child(3) { animation-delay: 1s; }
-  @keyframes radarPulse { 0% { transform: scale(0.4); opacity: 1; } 100% { transform: scale(1.3); opacity: 0; } }
+  .icon-newspaper .paper-line { animation: paperShift 2.6s ease-in-out infinite; }
+  .icon-newspaper .paper-line:nth-child(2) { animation-delay: 0.3s; }
+  .icon-newspaper .paper-line:nth-child(3) { animation-delay: 0.6s; }
+  @keyframes paperShift { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
   .icon-knight { animation: knightBounce 1.8s ease-in-out infinite; transform-origin: bottom center; }
   @keyframes knightBounce { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-3px) rotate(-4deg); } }
   .icon-quiz .quiz-mark { animation: quizFlip 3s ease-in-out infinite; transform-origin: center; }
@@ -231,7 +253,7 @@
   @keyframes cloudDrift { 0%, 100% { transform: translateX(-2px); } 50% { transform: translateX(2px); } }
   @keyframes sunPulse { 0%, 100% { transform: scale(1); opacity: 0.85; } 50% { transform: scale(1.12); opacity: 1; } }
   @media (prefers-reduced-motion: reduce) {
-    .icon-scan .scan-line, .icon-radar .radar-ring, .icon-knight, .icon-quiz .quiz-mark, .icon-weather .weather-cloud, .icon-weather .weather-sun, .roadmap-item.is-active .roadmap-node { animation: none; }
+    .icon-scan .scan-line, .icon-newspaper .paper-line, .icon-knight, .icon-quiz .quiz-mark, .icon-weather .weather-cloud, .icon-weather .weather-sun, .roadmap-item.is-active .roadmap-node { animation: none; }
   }
 
   /* FAQ */
@@ -240,7 +262,7 @@
   .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; margin-bottom: 14px; overflow: hidden; }
   .faq-question { width: 100%; text-align: left; padding: 20px 26px; background: none; border: none; font-family: "DM Sans", sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
   .faq-question .plus { flex-shrink: 0; width: 22px; height: 22px; position: relative; transition: transform 0.3s ease; }
-  .faq-question .plus::before, .faq-question .plus::after { content: ""; position: absolute; background: var(--accent); border-radius: 2px; }
+  .faq-question .plus::before, .faq-question .plus::after { content: ""; position: absolute; background: var(--coastal-blue); border-radius: 2px; }
   .faq-question .plus::before { width: 100%; height: 2px; top: 50%; left: 0; transform: translateY(-50%); }
   .faq-question .plus::after { width: 2px; height: 100%; left: 50%; top: 0; transform: translateX(-50%); transition: opacity 0.2s ease; }
   .faq-item.open .plus { transform: rotate(90deg); }
@@ -303,14 +325,20 @@
     .nav-links { gap: 18px; }
     .app-body { padding: 28px 24px; }
     .features-grid { grid-template-columns: 1fr; margin: 8px 24px 32px; }
-    .screenshots-row { padding: 8px 24px 16px; }
+    .screenshots-row { padding: 8px 24px 16px; grid-template-columns: repeat(2, 1fr); }
     .screenshots-label { padding: 0 24px; }
     footer { padding: 40px 24px; }
-    .roadmap { padding: 110px 20px 90px; }
-    .roadmap-card { padding: 20px 20px; }
-    .roadmap-item { gap: 16px; }
-    .roadmap-node { width: 36px; height: 36px; }
-    .roadmap-connector { left: 18px; }
+    .roadmap { padding: 110px 0 100px; }
+    .roadmap-head { padding: 0 20px; }
+    .roadmap-inner { padding: 0; }
+    .roadmap-track {
+      overflow-x: auto; justify-content: flex-start; padding: 0 28px;
+      -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    }
+    .roadmap-track::-webkit-scrollbar { display: none; }
+    .roadmap-item { flex: 0 0 92px; }
+    .roadmap-node { width: 44px; height: 44px; }
+    .roadmap-popover { width: 180px; }
   }
 </style>
 </head>
@@ -319,7 +347,15 @@
 <svg width="0" height="0" style="position:absolute">
   <filter id="spaceBend" x="-20%" y="-20%" width="140%" height="140%">
     <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="7" result="noise"/>
-    <feDisplacementMap in="SourceGraphic" in2="noise" scale="65" xChannelSelector="R" yChannelSelector="G"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="80" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="spaceBendHero" x="-30%" y="-30%" width="160%" height="160%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.012 0.018" numOctaves="2" seed="7" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="110" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="spaceBendCode" x="-25%" y="-25%" width="150%" height="150%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.014 0.02" numOctaves="2" seed="11" result="noise"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="90" xChannelSelector="R" yChannelSelector="G"/>
   </filter>
 </svg>
 <div class="page-warp" id="pageWarp"></div>
@@ -340,10 +376,13 @@
 </nav>
 
 <section class="hero" id="hero">
-  <p class="hero-eyebrow">&lt;/&gt; Android App Dev Studio</p>
-  <h1>Apps built with <em>purpose.</em></h1>
-  <p class="hero-sub">We make focused apps that work.</p>
-  <a class="hero-cta" href="#apps">See our apps</a>
+  <div class="hero-warp" id="heroWarp"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">&lt;/&gt; Android App Dev Studio</p>
+    <h1>Apps built with <em>purpose.</em></h1>
+    <p class="hero-sub">We make focused apps that work.</p>
+    <a class="hero-cta" href="#apps">See our apps</a>
+  </div>
   <div class="wave">
     <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
       <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#ffffff"/>
@@ -486,89 +525,102 @@
 </section>
 
 <section class="roadmap" id="pipeline">
+  <div class="roadmap-warp" id="roadmapWarp"></div>
   <div class="roadmap-inner">
     <div class="roadmap-head reveal">
       <h2>What's Next</h2>
-      <p class="roadmap-sub">Being built carefully - no release dates, only when they're ready.</p>
+      <p class="roadmap-sub">Being built carefully - no release dates, only when they're ready. Tap a node for details.</p>
     </div>
-    <div class="roadmap-list" id="roadmapList">
-      <div class="roadmap-connector" id="roadmapConnector"></div>
+    <div class="roadmap-track" id="roadmapTrack">
+      <svg class="roadmap-connector-svg" id="roadmapConnectorSvg"><path id="roadmapConnectorPath" stroke="url(#roadmapGradient)" /></svg>
+      <svg width="0" height="0">
+        <defs>
+          <linearGradient id="roadmapGradient" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#4fd1c5"/>
+            <stop offset="25%" stop-color="#ff6f61"/>
+            <stop offset="50%" stop-color="#b28dff"/>
+            <stop offset="75%" stop-color="#f4c95d"/>
+            <stop offset="100%" stop-color="#5fb4d9"/>
+          </linearGradient>
+        </defs>
+      </svg>
 
-      <div class="roadmap-item is-active" style="--item-color:#4fd1c5; --item-glow:rgba(79,209,197,0.35); --item-glow-strong:rgba(79,209,197,0.45);">
-        <div class="roadmap-node">
+      <div class="roadmap-item is-active is-top" style="--item-color:#4fd1c5; --item-glow:rgba(79,209,197,0.35); --item-glow-strong:rgba(79,209,197,0.45);">
+        <div class="roadmap-node" tabindex="0">
           <svg class="roadmap-icon icon-scan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="5" y="3" width="14" height="18" rx="2"/>
             <line class="scan-line" x1="7" y1="12" x2="17" y2="12"/>
           </svg>
         </div>
-        <div class="roadmap-card">
-          <div class="roadmap-status">In development</div>
+        <div class="roadmap-label">
           <h3>Doc Scanner</h3>
-          <p>A fast, private document scanner that works entirely on-device. No cloud upload required.</p>
+          <div class="roadmap-status">In development</div>
         </div>
+        <div class="roadmap-popover"><p>A fast, private document scanner that works entirely on-device. No cloud upload required.</p></div>
       </div>
 
-      <div class="roadmap-item is-active" style="--item-color:#ff6f61; --item-glow:rgba(255,111,97,0.35); --item-glow-strong:rgba(255,111,97,0.45);">
-        <div class="roadmap-node">
-          <svg class="roadmap-icon icon-radar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <circle class="radar-ring" cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/>
-            <circle class="radar-ring" cx="12" cy="12" r="5.5"/>
-            <circle class="radar-ring" cx="12" cy="12" r="9"/>
+      <div class="roadmap-item is-active is-bottom" style="--item-color:#ff6f61; --item-glow:rgba(255,111,97,0.35); --item-glow-strong:rgba(255,111,97,0.45);">
+        <div class="roadmap-node" tabindex="0">
+          <svg class="roadmap-icon icon-newspaper" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="1.5"/>
+            <line class="paper-line" x1="6.5" y1="9" x2="17.5" y2="9"/>
+            <line class="paper-line" x1="6.5" y1="12.5" x2="17.5" y2="12.5"/>
+            <line class="paper-line" x1="6.5" y1="16" x2="13" y2="16"/>
           </svg>
         </div>
-        <div class="roadmap-card">
-          <div class="roadmap-status">In development</div>
+        <div class="roadmap-label">
           <h3>News Aggregator</h3>
-          <p>A clean RSS reader that pulls from public feeds you choose - no algorithmic noise, no doom scroll.</p>
+          <div class="roadmap-status">In development</div>
         </div>
+        <div class="roadmap-popover"><p>A clean RSS reader that pulls from public feeds you choose - no algorithmic noise, no doom scroll.</p></div>
       </div>
 
-      <div class="roadmap-item is-planning" style="--item-color:#b28dff; --item-glow:rgba(178,141,255,0.3); --item-glow-strong:rgba(178,141,255,0.4);">
-        <div class="roadmap-node">
+      <div class="roadmap-item is-planning is-top" style="--item-color:#b28dff; --item-glow:rgba(178,141,255,0.3); --item-glow-strong:rgba(178,141,255,0.4);">
+        <div class="roadmap-node" tabindex="0">
           <svg class="roadmap-icon icon-knight" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M7 21h10M8 21c-.5-4 .5-6 2-7-1-1.5-1.5-3-1-5 .5-2 2.5-3.5 5-3.5 0 1.5-.5 2.5-1.5 3 1.5.5 2.5 2 2.5 4 0 3-1 6.5-1 8.5"/>
             <circle cx="14" cy="7" r="0.6" fill="currentColor"/>
           </svg>
         </div>
-        <div class="roadmap-card">
-          <div class="roadmap-status">Design</div>
+        <div class="roadmap-label">
           <h3>Chess Puzzle</h3>
-          <p>Daily tactics puzzles to sharpen your game. No accounts, no clock pressure, just the board.</p>
+          <div class="roadmap-status">Design</div>
         </div>
+        <div class="roadmap-popover"><p>Daily tactics puzzles to sharpen your game. No accounts, no clock pressure, just the board.</p></div>
       </div>
 
-      <div class="roadmap-item is-planning" style="--item-color:#f4c95d; --item-glow:rgba(244,201,93,0.3); --item-glow-strong:rgba(244,201,93,0.4);">
-        <div class="roadmap-node">
+      <div class="roadmap-item is-planning is-bottom" style="--item-color:#f4c95d; --item-glow:rgba(244,201,93,0.3); --item-glow-strong:rgba(244,201,93,0.4);">
+        <div class="roadmap-node" tabindex="0">
           <svg class="roadmap-icon icon-quiz" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="9"/>
             <path class="quiz-mark" d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.9.4-1.5.9-1.5 2" />
             <circle cx="12" cy="17" r="0.6" fill="currentColor"/>
           </svg>
         </div>
-        <div class="roadmap-card">
-          <div class="roadmap-status">Ideating</div>
+        <div class="roadmap-label">
           <h3>Quiz App</h3>
-          <p>Quick, focused quizzes on topics you pick. No accounts, no ads, no clutter.</p>
+          <div class="roadmap-status">Ideating</div>
         </div>
+        <div class="roadmap-popover"><p>Quick, focused quizzes on topics you pick. No accounts, no ads, no clutter.</p></div>
       </div>
 
-      <div class="roadmap-item is-planning" style="--item-color:#5fb4d9; --item-glow:rgba(95,180,217,0.3); --item-glow-strong:rgba(95,180,217,0.4);">
-        <div class="roadmap-node">
+      <div class="roadmap-item is-planning is-top" style="--item-color:#5fb4d9; --item-glow:rgba(95,180,217,0.3); --item-glow-strong:rgba(95,180,217,0.4);">
+        <div class="roadmap-node" tabindex="0">
           <svg class="roadmap-icon icon-weather" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <circle class="weather-sun" cx="9" cy="8" r="3"/>
             <path class="weather-cloud" d="M6 17h10a3.5 3.5 0 0 0 .5-6.96A5 5 0 0 0 7.1 12.06 3.5 3.5 0 0 0 6 17z"/>
           </svg>
         </div>
-        <div class="roadmap-card">
-          <div class="roadmap-status">Ideating</div>
+        <div class="roadmap-label">
           <h3>Weather App</h3>
-          <p>Simple, accurate forecasts. Nothing more than what you actually need.</p>
+          <div class="roadmap-status">Ideating</div>
         </div>
+        <div class="roadmap-popover"><p>Simple, accurate forecasts. Nothing more than what you actually need.</p></div>
       </div>
 
-      <div class="roadmap-item is-more">
+      <div class="roadmap-item is-more is-bottom">
         <div class="roadmap-node"><span style="color:var(--text-faint); font-size:1.1rem; line-height:1;">+</span></div>
-        <div class="roadmap-card"><span>More coming soon</span></div>
+        <div class="roadmap-label"><span>More coming</span></div>
       </div>
     </div>
   </div>
@@ -619,10 +671,11 @@
     </a></li>
   </ul>
   <p class="footer-copy">
-    <svg class="footer-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="14" height="14"><path d="M3 9h15a2 2 0 0 1 0 4h-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 9v7a4 4 0 0 0 4 4h7a4 4 0 0 0 4-4V9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     © 2026 Cabin Room Studio. Built on coffee
+    <svg class="footer-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="14" height="14"><path d="M3 9h15a2 2 0 0 1 0 4h-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 9v7a4 4 0 0 0 4 4h7a4 4 0 0 0 4-4V9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    and patience
     <svg class="footer-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="13" height="13"><path d="M6 3h12M6 21h12M8 3c0 5 8 5 8 9s-8 4-8 9M16 3c0 5-8 5-8 9s8 4 8 9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    and patience.
+    .
   </p>
 </footer>
 
@@ -648,7 +701,7 @@
     });
   }
 
-  // Page-wide cursor space-bending effect
+  // Page-wide cursor space-bending effect (ambient, everywhere)
   const pageWarp = document.getElementById('pageWarp');
   if (pageWarp) {
     window.addEventListener('mousemove', (e) => {
@@ -658,11 +711,72 @@
     }, { passive: true });
   }
 
-  // Roadmap: staggered reveal + connector line draw-in on scroll
-  const roadmapList = document.getElementById('roadmapList');
-  const roadmapConnector = document.getElementById('roadmapConnector');
-  if (roadmapList) {
-    const roadmapItems = roadmapList.querySelectorAll('.roadmap-item');
+  // Hero: dedicated local math-symbol warp (full strength, tracks cursor within hero)
+  const heroSection = document.getElementById('hero');
+  const heroWarp = document.getElementById('heroWarp');
+  if (heroSection && heroWarp) {
+    heroSection.addEventListener('mousemove', (e) => {
+      const r = heroSection.getBoundingClientRect();
+      heroSection.style.setProperty('--hero-mx', `${e.clientX - r.left}px`);
+      heroSection.style.setProperty('--hero-my', `${e.clientY - r.top}px`);
+      heroWarp.classList.add('active');
+    }, { passive: true });
+  }
+
+  // Roadmap: dedicated local coding-symbol warp (tracks cursor within the section)
+  const roadmapSection = document.getElementById('pipeline');
+  const roadmapWarp = document.getElementById('roadmapWarp');
+  if (roadmapSection && roadmapWarp) {
+    roadmapSection.addEventListener('mousemove', (e) => {
+      const r = roadmapSection.getBoundingClientRect();
+      roadmapSection.style.setProperty('--roadmap-mx', `${e.clientX - r.left}px`);
+      roadmapSection.style.setProperty('--roadmap-my', `${e.clientY - r.top}px`);
+      roadmapWarp.classList.add('active');
+    }, { passive: true });
+  }
+
+  // Roadmap: horizontal curved connector through node centers, staggered reveal, tap-to-toggle popovers
+  const roadmapTrack = document.getElementById('roadmapTrack');
+  const roadmapConnectorSvg = document.getElementById('roadmapConnectorSvg');
+  const roadmapConnectorPath = document.getElementById('roadmapConnectorPath');
+
+  function drawRoadmapConnector() {
+    if (!roadmapTrack || !roadmapConnectorPath) return;
+    const trackRect = roadmapTrack.getBoundingClientRect();
+    roadmapConnectorSvg.setAttribute('width', trackRect.width);
+    roadmapConnectorSvg.setAttribute('height', trackRect.height);
+    roadmapConnectorSvg.setAttribute('viewBox', `0 0 ${trackRect.width} ${trackRect.height}`);
+    const nodes = roadmapTrack.querySelectorAll('.roadmap-node');
+    const points = Array.from(nodes).map(node => {
+      const r = node.getBoundingClientRect();
+      return [r.left - trackRect.left + r.width / 2, r.top - trackRect.top + r.height / 2];
+    }).filter(p => !isNaN(p[0]));
+    if (points.length < 2) { roadmapConnectorPath.setAttribute('d', ''); return; }
+    let d = `M ${points[0][0]} ${points[0][1]}`;
+    for (let i = 1; i < points.length; i++) {
+      const [x0, y0] = points[i - 1];
+      const [x1, y1] = points[i];
+      const mx = (x0 + x1) / 2;
+      d += ` C ${mx} ${y0}, ${mx} ${y1}, ${x1} ${y1}`;
+    }
+    roadmapConnectorPath.setAttribute('d', d);
+    const len = roadmapConnectorPath.getTotalLength ? roadmapConnectorPath.getTotalLength() : 1400;
+    const alreadyVisible = roadmapConnectorSvg.classList.contains('visible');
+    roadmapConnectorPath.style.strokeDasharray = len;
+    roadmapConnectorPath.style.strokeDashoffset = alreadyVisible ? '0' : len;
+    // force reflow so a later 'visible' class transition animates from this value
+    roadmapConnectorPath.getBoundingClientRect();
+  }
+
+  if (roadmapTrack) {
+    let roadmapResizeTimer;
+    const redrawRoadmap = () => { clearTimeout(roadmapResizeTimer); roadmapResizeTimer = setTimeout(drawRoadmapConnector, 100); };
+    window.addEventListener('load', drawRoadmapConnector);
+    window.addEventListener('resize', redrawRoadmap);
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(drawRoadmapConnector); }
+    setTimeout(drawRoadmapConnector, 100);
+
+    const roadmapItems = roadmapTrack.querySelectorAll('.roadmap-item');
     const roadmapObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -670,33 +784,36 @@
           roadmapObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.2, rootMargin: '0px 0px -60px 0px' });
+    }, { threshold: 0.2 });
     roadmapItems.forEach((item, i) => {
-      item.style.transitionDelay = `${Math.min(i * 90, 360)}ms`;
+      item.style.transitionDelay = `${Math.min(i * 80, 320)}ms`;
       roadmapObserver.observe(item);
     });
 
     const connectorObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          roadmapConnector.classList.add('visible');
+          roadmapConnectorSvg.classList.add('visible');
+          if (roadmapConnectorPath) roadmapConnectorPath.style.strokeDashoffset = '0';
           connectorObserver.disconnect();
         }
       });
     }, { threshold: 0.1 });
-    connectorObserver.observe(roadmapList);
+    connectorObserver.observe(roadmapTrack);
 
-    // Subtle 3D tilt toward cursor on each roadmap card
+    // Tap-to-toggle popovers for touch devices (hover already handles desktop)
     roadmapItems.forEach(item => {
-      const card = item.querySelector('.roadmap-card');
-      if (!card || item.classList.contains('is-more')) return;
-      card.addEventListener('mousemove', (e) => {
-        const r = card.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - 0.5;
-        const py = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform = `perspective(700px) rotateX(${(-py * 6).toFixed(2)}deg) rotateY(${(px * 6).toFixed(2)}deg) translateY(-4px)`;
+      const node = item.querySelector('.roadmap-node');
+      if (!node || item.classList.contains('is-more')) return;
+      node.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const wasOpen = item.classList.contains('popover-open');
+        roadmapItems.forEach(i => i.classList.remove('popover-open'));
+        if (!wasOpen) item.classList.add('popover-open');
       });
-      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+    document.addEventListener('click', () => {
+      roadmapItems.forEach(i => i.classList.remove('popover-open'));
     });
   }
 
