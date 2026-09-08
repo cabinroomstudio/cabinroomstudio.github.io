@@ -1,5 +1,5 @@
 /* ============================================================
-   Cabin Room Studio — main.js
+   Cabin Room Studio - main.js
    Plain ES2020, no dependencies, no build step.
    ============================================================ */
 (function () {
@@ -15,30 +15,33 @@
 
   /* ---- Cursor dot field + trailing aurora ---------------
      The smoothness comes from easing toward a target inside a
-     rAF loop — never from writing styles in the event handler.
+     rAF loop - never from writing styles in the event handler.
      The loop parks itself once it settles.                  */
 
   function initCursor() {
     var dots = $('.dot-field');
     var aurora = $('.aurora');
-    if (!dots || !aurora || !finePointer || reduceMotion) return;
+    if (!dots || !aurora || !finePointer) return;
 
     var tx = window.innerWidth / 2, ty = window.innerHeight / 2;
     var px = tx, py = ty, ax = tx, ay = ty;
     var running = false, live = false;
 
+    function write(dx, dy, gx, gy) {
+      root.style.setProperty('--px', dx.toFixed(1) + 'px');
+      root.style.setProperty('--py', dy.toFixed(1) + 'px');
+      root.style.setProperty('--ax', gx.toFixed(1) + 'px');
+      root.style.setProperty('--ay', gy.toFixed(1) + 'px');
+    }
+
     function frame() {
       px += (tx - px) * 0.16;  py += (ty - py) * 0.16;   // dots track closely
       ax += (tx - ax) * 0.07;  ay += (ty - ay) * 0.07;   // aurora lags -> depth
-
-      root.style.setProperty('--px', px.toFixed(1) + 'px');
-      root.style.setProperty('--py', py.toFixed(1) + 'px');
-      root.style.setProperty('--ax', ax.toFixed(1) + 'px');
-      root.style.setProperty('--ay', ay.toFixed(1) + 'px');
+      write(px, py, ax, ay);
 
       if (Math.abs(tx - px) < 0.1 && Math.abs(ty - py) < 0.1 &&
           Math.abs(tx - ax) < 0.1 && Math.abs(ty - ay) < 0.1) {
-        running = false;               // settled — stop burning frames
+        running = false;               // settled - stop burning frames
         return;
       }
       requestAnimationFrame(frame);
@@ -56,6 +59,13 @@
         live = true;
         dots.classList.add('is-live');
         aurora.classList.add('is-live');
+      }
+      // Reduced motion: the highlight still follows the pointer,
+      // it just snaps instead of easing behind it.
+      if (reduceMotion) {
+        px = ax = tx; py = ay = ty;
+        write(tx, ty, tx, ty);
+        return;
       }
       start();
     }, { passive: true });
@@ -202,55 +212,6 @@
   }
 
 
-  /* ---- Count-up stats ----------------------------------- */
-
-  function initCounters() {
-    var nums = $$('[data-count]');
-    if (!nums.length) return;
-
-    function settle(el) {
-      el.textContent = parseFloat(el.dataset.count) + (el.dataset.suffix || '');
-    }
-
-    function run(el) {
-      var target = parseFloat(el.dataset.count);
-      var suffix = el.dataset.suffix || '';
-
-      var dur = 1400, t0 = null;
-      function step(ts) {
-        if (t0 === null) t0 = ts;
-        var p = Math.min((ts - t0) / dur, 1);
-        var eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.round(target * eased) + suffix;
-        if (p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    }
-
-    // No animation wanted, or no observer available: show the real
-    // numbers straight away rather than risk them sticking at zero.
-    if (reduceMotion || !('IntersectionObserver' in window)) {
-      nums.forEach(settle);
-      return;
-    }
-
-    // Belt and braces: if the observer has not reported within a few
-    // seconds (throttled rendering, background tab), just set the values.
-    var fallback = setTimeout(function () {
-      nums.forEach(function (el) { if (el.textContent === '0') settle(el); });
-    }, 3000);
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        clearTimeout(fallback);
-        run(entry.target);
-        io.unobserve(entry.target);
-      });
-    }, { threshold: 0.5 });
-    nums.forEach(function (el) { io.observe(el); });
-  }
-
-
   /* ---- FAQ accordion ------------------------------------ */
 
   function initFaq() {
@@ -389,6 +350,31 @@
   }
 
 
+  /* ---- Screenshot 3D tilt -------------------------------
+     Tilts each shot toward the cursor so it reads as floating
+     above the page rather than just sliding upward.         */
+
+  function initTilt() {
+    if (!finePointer || reduceMotion) return;
+    var MAX = 14;   // degrees
+
+    $$('.shot').forEach(function (shot) {
+      shot.addEventListener('mousemove', function (e) {
+        var r = shot.getBoundingClientRect();
+        var dx = (e.clientX - r.left) / r.width - 0.5;    // -0.5 .. 0.5
+        var dy = (e.clientY - r.top) / r.height - 0.5;
+        shot.style.setProperty('--tilt-y', (dx * MAX).toFixed(2) + 'deg');
+        shot.style.setProperty('--tilt-x', (-dy * MAX).toFixed(2) + 'deg');
+      }, { passive: true });
+
+      shot.addEventListener('mouseleave', function () {
+        shot.style.setProperty('--tilt-x', '0deg');
+        shot.style.setProperty('--tilt-y', '0deg');
+      });
+    });
+  }
+
+
   /* ---- Screenshot lightbox ------------------------------ */
 
   function initLightbox() {
@@ -487,7 +473,7 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      // honeypot — a real person never fills this in
+      // honeypot - a real person never fills this in
       var hp = form.querySelector('input[name="botcheck"]');
       if (hp && hp.checked) return;
 
@@ -506,7 +492,7 @@
         .then(function (r) { return r.json(); })
         .then(function (result) {
           if (!result.success) throw new Error(result.message || 'Request failed');
-          status.textContent = 'Thanks — message sent. We usually reply within a day or two.';
+          status.textContent = 'Thanks - message sent. We usually reply within a day or two.';
           status.classList.add('is-ok');
           form.reset();
         })
@@ -538,9 +524,9 @@
     initNav();
     initDrawer();
     initSpotlight();
-    initCounters();
     initFaq();
     initRoadmap();
+    initTilt();
     initLightbox();
     initParallax();
     initForm();

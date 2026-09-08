@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weighly - a calm weight tracker for Android | Cabin Room Studio</title>
+<meta name="description" content="Weighly is a calm, focused Android weight tracker with a custom chart, goal line, BMI calculator, mood logging and reminders. Free, no ads, no account, and every entry stays on your device.">
+<link rel="canonical" href="https://cabinroomstudio.github.io/weighly.html">
+<meta name="theme-color" content="#10161D">
+
+<meta property="og:title" content="Weighly - a calm weight tracker for Android">
+<meta property="og:description" content="A custom chart, goal line, BMI calculator, mood logging and reminders. Free, no ads, and your data never leaves your phone.">
+<meta property="og:image" content="https://cabinroomstudio.github.io/og-weighly.jpg">
+<meta property="og:url" content="https://cabinroomstudio.github.io/weighly.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Cabin Room Studio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Weighly - a calm weight tracker for Android">
+<meta name="twitter:description" content="A custom chart, goal line, BMI calculator, mood logging and reminders. Free, no ads, and your data never leaves your phone.">
+<meta name="twitter:image" content="https://cabinroomstudio.github.io/og-weighly.jpg">
+
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/sections.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Weighly",
+      "operatingSystem": "Android",
+      "applicationCategory": "HealthApplication",
+      "url": "https://play.google.com/store/apps/details?id=com.cabinroomstudio.weighly",
+      "description": "A calm, focused weight tracker with a custom chart, goal line, BMI calculator, mood logging and reminders. All data stays on your device.",
+      "publisher": { "@type": "Organization", "name": "Cabin Room Studio", "url": "https://cabinroomstudio.github.io/" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Is my data private?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. All your weight and mood entries stay on your device. Nothing is uploaded to a server or shared with anyone." } },
+        { "@type": "Question", "name": "Is Weighly free?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, Weighly is free to use." } },
+        { "@type": "Question", "name": "What Android version do I need?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Weighly works on most modern Android phones. Check the Google Play listing for the exact minimum version supported." } },
+        { "@type": "Question", "name": "How do I report a bug or request a feature?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Use the contact form on the Cabin Room Studio site, or email cabinroomstudio42@gmail.com directly." } }
+      ]
+    }
+  ]
+}
+</script>
+<noscript><style>
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .faq-a { grid-template-rows: 1fr; }
+  .faq-a > div { padding-bottom: var(--sp-6); }
+</style></noscript>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="dot-field" aria-hidden="true"></div>
+<div class="aurora" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="nav">
+  <a class="nav-logo" href="index.html">
+    <svg class="nav-mark" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M32 6 L54 24 L48 24 L48 54 L16 54 L16 24 L10 24 Z" fill="none" stroke="#e0a94a" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M32 6 L32 24 L48 24" fill="none" stroke="#e0a94a" stroke-width="2.6" stroke-linejoin="round" opacity="0.55"/>
+    </svg>
+    Cabin Room Studio
+  </a>
+
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#features">Features</a>
+    <a href="#screenshots">Screenshots</a>
+    <a href="#faq">FAQ</a>
+    <a href="index.html">Studio</a>
+  </nav>
+
+  <a class="btn btn--ghost nav-cta" href="index.html#contact">Get in touch</a>
+
+  <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+    <span></span>
+  </button>
+</header>
+
+<nav class="drawer" id="drawer" aria-label="Mobile">
+  <a href="#features" style="--i:0">Features</a>
+  <a href="#screenshots" style="--i:1">Screenshots</a>
+  <a href="#faq" style="--i:2">FAQ</a>
+  <a href="index.html" style="--i:3">Studio</a>
+  <a href="index.html#contact" style="--i:4">Get in touch</a>
+</nav>
+
+<main id="main">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="u-container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <a class="app-crumb" href="index.html">Cabin Room Studio</a>
+
+          <div class="app-title">
+            <span class="app-icon app-icon--lg">
+              <img src="assets/img/weighly-icon.jpg" width="192" height="192" alt="" decoding="async">
+            </span>
+            <h1>Weighly</h1>
+          </div>
+
+          <p class="hero-sub">A calm weight tracker for Android. A custom chart, a goal line, BMI, mood logging and gentle reminders - and every entry stays on your phone.</p>
+
+          <div class="hero-actions">
+            <a class="btn btn--play" href="https://play.google.com/store/apps/details?id=com.cabinroomstudio.weighly" target="_blank" rel="noopener">
+            <span class="play-mark" aria-hidden="true">
+              <svg viewBox="0 0 512 512">
+                <path d="M42.5 19.5C34 28.5 29 42 29 59.5v393c0 17.5 5 31 13.5 40l2 2L273 261.5v-5L44.5 17.5l-2 2z" fill="#00d4ff"/>
+                <path d="M348 336.5l-75-75v-5l75-75 1.7 1 88.8 50.5c25.4 14.4 25.4 38 0 52.5L349.7 335.5l-1.7 1z" fill="#ffd900"/>
+                <path d="M349.7 335.5L273 259 42.5 489.5c8.5 9 22.5 10 38 1.5l269.2-155.5" fill="#ff3a44"/>
+                <path d="M349.7 176.5L80.5 21c-15.5-8.5-29.5-7.5-38 1.5L273 259l76.7-82.5z" fill="#00e676"/>
+              </svg>
+            </span>
+            <span class="play-copy"><small>Get it on</small>Google Play</span>
+            </a>
+            <a class="btn btn--ghost" href="#features">See what it does</a>
+          </div>
+
+          <p class="hero-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            Free &middot; No ads &middot; No account &middot; No trackers
+          </p>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-phone shotcard shotcard--hero">
+            <img src="assets/img/shot-1.jpg" width="300" height="533" alt="The Weighly home screen showing a weight trend chart" fetchpriority="high" decoding="async">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FEATURES ================= -->
+  <section class="section" id="features">
+    <div class="u-container">
+      <div class="section-head reveal">
+        <p class="u-eyebrow">What it does</p>
+        <h2>Everything you need. Nothing you don&rsquo;t.</h2>
+        <p>Six things it does well, instead of thirty it does badly.</p>
+      </div>
+
+      <div class="bento">
+        <div class="card card--spot bento-item bento-item--wide reveal" style="--i:0">
+          <p class="bento-label">Tracking</p>
+          <h3>Weight chart</h3>
+          <p>See your trend over time on a clean, custom-built chart - no third-party graphing library, no wasted pixels.</p>
+          <div class="bento-mock">
+            <svg width="100%" height="40" viewBox="0 0 160 32" aria-hidden="true"><path d="M2,26 C14,26 18,20 28,20 C40,20 44,23 52,22 C64,20 68,11 78,10 C90,9 94,15 102,14 C114,12 118,7 128,6 C140,5 148,8 158,8" fill="none" stroke="#5fb4d9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+
+        <div class="card card--spot bento-item reveal" style="--i:1">
+          <p class="bento-label">Goals</p>
+          <h3>Goal tracking</h3>
+          <p>Set a target and see a goal line right on your chart.</p>
+          <div class="bento-mock">
+            <svg width="44" height="44" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="16" fill="none" stroke="#2a3844" stroke-width="4"/><circle cx="20" cy="20" r="16" fill="none" stroke="#5fb4d9" stroke-width="4" stroke-dasharray="70 100" stroke-linecap="round" transform="rotate(-90 20 20)"/></svg>
+          </div>
+        </div>
+
+        <div class="card card--spot bento-item reveal" style="--i:2">
+          <p class="bento-label">Health</p>
+          <h3>BMI calculator</h3>
+          <p>Built in, so you don&rsquo;t need a separate app for it.</p>
+          <div class="bento-mock--box"><span>BMI</span><b>22.4</b></div>
+        </div>
+
+        <div class="card card--spot bento-item reveal" style="--i:3">
+          <p class="bento-label">Wellbeing</p>
+          <h3>Mood logging</h3>
+          <p>Log how you feel alongside every entry.</p>
+          <div class="bento-mock">
+            <span class="dot-row"><i></i><i class="on"></i><i></i><i></i></span>
+          </div>
+        </div>
+
+        <div class="card card--spot bento-item reveal" style="--i:4">
+          <p class="bento-label">Reminders</p>
+          <h3>Gentle nudges</h3>
+          <p>Local notifications. No accounts, no spam.</p>
+          <div class="bento-mock--box"><span>Log your weight</span><b>7:00 AM</b></div>
+        </div>
+
+        <div class="card card--spot bento-item bento-item--wide reveal" style="--i:5">
+          <p class="bento-label">Privacy</p>
+          <h3>On-device data</h3>
+          <p>Everything stays on your phone. Nothing is uploaded, nothing is sold, and there is no account to delete because there was never one to make.</p>
+          <div class="bento-mock">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5fb4d9" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            <span style="font-size:var(--step--1);color:var(--text-muted)">Local only</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SCREENSHOTS ================= -->
+  <section class="section section--seam" id="screenshots">
+    <div class="u-container">
+      <div class="section-head reveal">
+        <p class="u-eyebrow">A look inside</p>
+        <h2>Screenshots</h2>
+        <p>Tap any screen to see it larger.</p>
+      </div>
+
+      <div class="shots reveal">
+        <button class="shot" type="button" aria-label="View screenshot 1 larger">
+          <span class="shotcard"><img src="assets/img/shot-1.jpg" width="300" height="533" alt="Weighly home screen with weight trend chart" loading="lazy" decoding="async"></span>
+        </button>
+        <button class="shot" type="button" aria-label="View screenshot 2 larger">
+          <span class="shotcard"><img src="assets/img/shot-2.jpg" width="300" height="533" alt="Weighly entry list" loading="lazy" decoding="async"></span>
+        </button>
+        <button class="shot" type="button" aria-label="View screenshot 3 larger">
+          <span class="shotcard"><img src="assets/img/shot-3.jpg" width="300" height="533" alt="Weighly goal setting screen" loading="lazy" decoding="async"></span>
+        </button>
+        <button class="shot" type="button" aria-label="View screenshot 4 larger">
+          <span class="shotcard"><img src="assets/img/shot-4.jpg" width="300" height="533" alt="Weighly BMI calculator" loading="lazy" decoding="async"></span>
+        </button>
+        <button class="shot" type="button" aria-label="View screenshot 5 larger">
+          <span class="shotcard"><img src="assets/img/shot-5.jpg" width="300" height="533" alt="Weighly mood logging" loading="lazy" decoding="async"></span>
+        </button>
+        <button class="shot" type="button" aria-label="View screenshot 6 larger">
+          <span class="shotcard"><img src="assets/img/shot-6.jpg" width="300" height="533" alt="Weighly reminder settings" loading="lazy" decoding="async"></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRIVACY ================= -->
+  <section class="section" id="privacy">
+    <div class="u-container">
+      <div class="card card--spot privacy-card reveal">
+        <svg class="privacy-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+        </svg>
+        <div>
+          <h2>Your data never leaves your phone</h2>
+          <p>Weighly has no accounts, no sync and no analytics. Your weight entries, moods and goals live in a private database on your device and nowhere else - which also means uninstalling the app deletes them for good, so export first if you want a copy.</p>
+          <a class="btn btn--ghost" href="privacy-policy.html">Read the privacy policy</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="section section--seam" id="faq">
+    <div class="u-container u-narrow">
+      <div class="section-head reveal">
+        <p class="u-eyebrow">Good to know</p>
+        <h2>Questions</h2>
+      </div>
+
+      <div class="reveal">
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false">Is my data private?<span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><div>Yes. All your weight and mood entries stay on your device - nothing is uploaded to a server or shared with anyone.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false">Is Weighly free?<span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><div>Yes, Weighly is free to use.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false">What Android version do I need?<span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><div>Weighly works on most modern Android phones. Check the Google Play listing for the exact minimum version supported.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button" aria-expanded="false">How do I report a bug or request a feature?<span class="faq-icon" aria-hidden="true"></span></button>
+          <div class="faq-a"><div>Use the form below and pick the matching category, or email us directly at <a href="mailto:cabinroomstudio42@gmail.com" style="color:var(--amber-500)">cabinroomstudio42@gmail.com</a>.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="section">
+    <div class="u-container">
+      <div class="card app-cta reveal">
+        <h2>Give it a try</h2>
+        <p>Free, and it stays free. Nothing to sign up for.</p>
+        <div class="hero-actions">
+          <a class="btn btn--play" href="https://play.google.com/store/apps/details?id=com.cabinroomstudio.weighly" target="_blank" rel="noopener">
+          <span class="play-mark" aria-hidden="true">
+            <svg viewBox="0 0 512 512">
+              <path d="M42.5 19.5C34 28.5 29 42 29 59.5v393c0 17.5 5 31 13.5 40l2 2L273 261.5v-5L44.5 17.5l-2 2z" fill="#00d4ff"/>
+              <path d="M348 336.5l-75-75v-5l75-75 1.7 1 88.8 50.5c25.4 14.4 25.4 38 0 52.5L349.7 335.5l-1.7 1z" fill="#ffd900"/>
+              <path d="M349.7 335.5L273 259 42.5 489.5c8.5 9 22.5 10 38 1.5l269.2-155.5" fill="#ff3a44"/>
+              <path d="M349.7 176.5L80.5 21c-15.5-8.5-29.5-7.5-38 1.5L273 259l76.7-82.5z" fill="#00e676"/>
+            </svg>
+          </span>
+          <span class="play-copy"><small>Get it on</small>Google Play</span>
+            </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="u-container">
+    <div class="footer-grid">
+      <div class="footer-brand-col">
+        <div class="footer-brand">
+          <svg class="footer-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M32 6 L54 24 L48 24 L48 54 L16 54 L16 24 L10 24 Z" fill="none" stroke="#e0a94a" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M32 6 L32 24 L48 24" fill="none" stroke="#e0a94a" stroke-width="2" stroke-linejoin="round" opacity="0.55"/>
+          </svg>
+          Cabin Room Studio
+        </div>
+        <p class="footer-blurb">An independent Android studio building focused apps that respect your time and your data.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="studio-privacy.html">Privacy policy</a></li>
+          <li><a href="studio-terms.html">Terms of use</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>    </div>
+
+    <div class="footer-base">
+      <p class="footer-copy">
+        &copy; <span class="js-year">2026</span> Cabin Room Studio. Built on coffee
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h15a2 2 0 0 1 0 4h-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M3 9v7a4 4 0 0 0 4 4h7a4 4 0 0 0 4-4V9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        and patience
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12M6 21h12M8 3c0 5 8 5 8 9s-8 4-8 9M16 3c0 5-8 5-8 9s8 4 8 9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </p>
+      <a class="footer-copy" href="#main">Back to top &uarr;</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= LIGHTBOX ================= -->
+<div class="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer" aria-hidden="true">
+  <button class="lightbox-btn lightbox-close" type="button" aria-label="Close">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <button class="lightbox-btn lightbox-btn--prev" type="button" aria-label="Previous screenshot">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+  </button>
+  <img class="lightbox-img" alt="">
+  <button class="lightbox-btn lightbox-btn--next" type="button" aria-label="Next screenshot">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+  </button>
+  <p class="lightbox-count"></p>
+</div>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

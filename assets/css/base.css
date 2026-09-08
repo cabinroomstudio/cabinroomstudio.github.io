@@ -1,5 +1,5 @@
 /* ============================================================
-   Cabin Room Studio — Base
+   Cabin Room Studio - Base
    Reset, typography, ambient background layers, a11y.
    ============================================================ */
 
@@ -69,7 +69,7 @@ h4, h5, h6 { font-family: var(--font-display); font-weight: 400; line-height: va
 .u-narrow { max-width: var(--w-narrow); margin-inline: auto; }
 
 .section { position: relative; z-index: var(--z-content); padding-block: var(--section-y); }
-.section-head { text-align: center; margin-bottom: var(--sp-16); }
+.section-head { text-align: center; margin-bottom: var(--sp-10); }
 .section-head h2 { font-size: var(--step-4); margin-block: var(--sp-4) var(--sp-3); }
 .section-head p { color: var(--text-muted); font-weight: 300; max-width: 52ch; margin-inline: auto; }
 
@@ -94,26 +94,26 @@ h4, h5, h6 { font-family: var(--font-display); font-weight: 400; line-height: va
   content: ""; position: absolute; inset: 0;
   background-image: radial-gradient(circle at 1px 1px, var(--amber-500) 1px, transparent 0);
   background-size: 26px 26px;
-  -webkit-mask-image: radial-gradient(circle 260px at var(--px) var(--py), #000 0%, rgba(0,0,0,0.35) 45%, transparent 72%);
-          mask-image: radial-gradient(circle 260px at var(--px) var(--py), #000 0%, rgba(0,0,0,0.35) 45%, transparent 72%);
+  -webkit-mask-image: radial-gradient(circle 300px at var(--px) var(--py), #000 0%, rgba(0,0,0,0.5) 45%, transparent 75%);
+          mask-image: radial-gradient(circle 300px at var(--px) var(--py), #000 0%, rgba(0,0,0,0.5) 45%, transparent 75%);
   opacity: 0;
   transition: opacity var(--dur-slow) var(--ease-out);
 }
-.dot-field.is-live::after { opacity: 0.55; }
+.dot-field.is-live::after { opacity: 1; }
 
 /* Soft colour that trails further behind the cursor -> depth */
 .aurora {
   position: fixed; inset: 0; z-index: var(--z-bg);
   pointer-events: none;
   background:
-    radial-gradient(circle 460px at var(--ax) var(--ay), rgba(var(--amber-rgb), 0.13), transparent 62%),
-    radial-gradient(circle 300px at var(--ax) var(--ay), rgba(var(--coast-rgb), 0.10), transparent 58%);
+    radial-gradient(circle 500px at var(--ax) var(--ay), rgba(var(--amber-rgb), 0.20), transparent 62%),
+    radial-gradient(circle 320px at var(--ax) var(--ay), rgba(var(--coast-rgb), 0.14), transparent 58%);
   opacity: 0;
   transition: opacity var(--dur-slow) var(--ease-out);
 }
 .aurora.is-live { opacity: 1; }
 
-/* Static baked noise — a raster, NOT a live filter. Stops the
+/* Static baked noise - a raster, NOT a live filter. Stops the
    flat dark gradients reading as flat. */
 .grain {
   position: fixed; inset: 0; z-index: var(--z-grain);
@@ -190,5 +190,4 @@ h4, h5, h6 { font-family: var(--font-display); font-weight: 400; line-height: va
   }
 
   .reveal { opacity: 1; transform: none; }
-  .dot-field::after, .aurora { display: none; }
 }

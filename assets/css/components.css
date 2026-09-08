@@ -1,5 +1,5 @@
 /* ============================================================
-   Cabin Room Studio — Components
+   Cabin Room Studio - Components
    ============================================================ */
 
 /* ---- Buttons ------------------------------------------ */
@@ -83,7 +83,7 @@
 
 /* ---- Screenshot card ----------------------------------
    The source images are Play Store marketing shots that
-   already contain a device mockup — so no phone chrome
+   already contain a device mockup - so no phone chrome
    here, just a clean lifted card.                        */
 
 .shotcard {
@@ -97,67 +97,6 @@
 .shotcard img { width: 100%; height: auto; }
 
 .shotcard--hero { width: min(304px, 74vw); border-radius: var(--r-xl); }
-
-
-/* ---- Marquee ------------------------------------------ */
-
-.marquee {
-  overflow: hidden;
-  border-block: 1px solid var(--line);
-  background: rgba(var(--amber-rgb), 0.025);
-  padding-block: var(--sp-4);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-          mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-}
-.marquee-track {
-  display: flex; width: max-content;
-  animation: marquee-scroll 42s linear infinite;
-}
-.marquee:hover .marquee-track { animation-play-state: paused; }
-.marquee-group { display: flex; align-items: center; flex-shrink: 0; }
-.marquee-group li {
-  display: flex; align-items: center; gap: var(--sp-6);
-  padding-inline: var(--sp-6);
-  font-family: var(--font-mono);
-  font-size: var(--step--2);
-  font-weight: 500;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--text-faint);
-  white-space: nowrap;
-}
-.marquee-group li::after {
-  content: ""; width: 4px; height: 4px; border-radius: 50%;
-  background: var(--amber-500); opacity: 0.6; flex-shrink: 0;
-}
-@keyframes marquee-scroll { to { transform: translate3d(-50%, 0, 0); } }
-
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; }
-}
-
-
-/* ---- Stats -------------------------------------------- */
-
-.stats {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 1px; background: var(--line);
-  border: 1px solid var(--line); border-radius: var(--r-lg);
-  overflow: hidden;
-}
-.stat { background: var(--ink-700); padding: var(--sp-8) var(--sp-5); text-align: center; }
-.stat-num {
-  font-family: var(--font-display);
-  font-size: var(--step-4); line-height: 1;
-  color: var(--amber-500);
-  display: block;
-  font-variant-numeric: tabular-nums;
-}
-.stat-label {
-  display: block; margin-top: var(--sp-3);
-  font-size: var(--step--2); font-weight: 500;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--text-faint);
-}
 
 
 /* ---- Bento feature grid ------------------------------- */
@@ -211,22 +150,40 @@
   gap: var(--sp-5);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding-bottom: var(--sp-4);
+  /* vertical padding gives the lifted card room inside the
+     scroll container, which would otherwise clip it */
+  padding: var(--sp-8) 0 var(--sp-10);
   scrollbar-width: none;
 }
 .shots::-webkit-scrollbar { display: none; }
 .shot {
   scroll-snap-align: center;
   border: none; padding: 0; background: none;
-  transition: transform var(--dur-mid) var(--ease-out);
   border-radius: var(--r-lg);
+  transform-style: preserve-3d;
+  transition: transform 0.45s var(--ease-out);
 }
-.shot:hover { transform: translateY(-8px); }
+
+/* Lifts off the page and tilts toward the cursor.
+   --tilt-x / --tilt-y are set per-card by main.js. */
+.shot:hover {
+  transform:
+    perspective(900px)
+    translateY(-6px)
+    rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg))
+    scale(1.04);
+}
+.shot .shotcard { transition: box-shadow 0.45s var(--ease-out); }
 .shot:hover .shotcard {
   box-shadow:
-    inset 0 0 0 1px rgba(var(--coast-rgb), 0.55),
-    0 24px 50px -14px rgba(var(--coast-rgb), 0.4),
-    var(--shadow-xl);
+    inset 0 0 0 1px rgba(var(--coast-rgb), 0.5),
+    0 34px 60px -22px rgba(0, 0, 0, 0.8),
+    0 20px 46px -18px rgba(var(--coast-rgb), 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shot:hover { transform: none; }
 }
 
 
@@ -335,7 +292,7 @@
 }
 .chip input:focus-visible + span { outline: 2px solid var(--amber-500); outline-offset: 3px; }
 
-/* honeypot — reachable to bots, invisible to people */
+/* honeypot - reachable to bots, invisible to people */
 .hp { position: absolute; left: -9999px; opacity: 0; height: 0; overflow: hidden; }
 
 .form-status { font-size: var(--step--1); text-align: center; min-height: 1.5em; }
@@ -351,31 +308,9 @@
 @keyframes spin { to { transform: rotate(360deg); } }
 
 
-/* ---- Support / coffee card ---------------------------- */
-
-.support {
-  display: grid; grid-template-columns: auto 1fr auto;
-  align-items: center; gap: var(--sp-8);
-  padding: var(--sp-10);
-  background: linear-gradient(135deg, rgba(var(--amber-rgb), 0.09), rgba(var(--coast-rgb), 0.05));
-}
-.support h2 { font-size: var(--step-2); margin-bottom: var(--sp-2); }
-.support p { color: var(--text-muted); font-weight: 300; font-size: var(--step--1); max-width: 46ch; }
-
-.cup { width: 60px; height: 60px; color: var(--amber-500); flex-shrink: 0; }
-.cup .steam { opacity: 0; animation: steam 3s ease-in-out infinite; }
-.cup .steam:nth-of-type(2) { animation-delay: 0.5s; }
-.cup .steam:nth-of-type(3) { animation-delay: 1s; }
-@keyframes steam {
-  0%   { opacity: 0; transform: translateY(2px) scaleY(0.7); }
-  35%  { opacity: 0.9; }
-  100% { opacity: 0; transform: translateY(-7px) scaleY(1.25); }
-}
-@media (prefers-reduced-motion: reduce) { .cup .steam { animation: none; opacity: 0.5; } }
-
 
 /* ============================================================
-   Shared page chrome — used by index.html AND the legal pages
+   Shared page chrome - used by index.html AND the legal pages
    ============================================================ */
 
 /* ---- Nav ---------------------------------------------- */
@@ -490,7 +425,7 @@
   padding-block: var(--sp-16) var(--sp-10);
 }
 .footer-grid {
-  display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+  display: grid; grid-template-columns: 2fr 1fr;
   gap: var(--sp-12); align-items: start;
   padding-bottom: var(--sp-12);
   border-bottom: 1px solid var(--line);

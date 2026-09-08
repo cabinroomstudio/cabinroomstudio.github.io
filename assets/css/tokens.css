@@ -1,5 +1,5 @@
 /* ============================================================
-   Cabin Room Studio — Design Tokens
+   Cabin Room Studio - Design Tokens
    Single source of truth for colour, type, space, motion.
    Brand anchors --amber-500 and --coast-500 are unchanged
    from the original site.
@@ -7,9 +7,9 @@
 
 :root {
   /* ---- Ground & surfaces ------------------------------- */
-  --ink-900: #0B1015;   /* deepest — page edges, footer      */
+  --ink-900: #0B1015;   /* deepest - page edges, footer      */
   --ink-800: #10161D;   /* page background                   */
-  --ink-700: #161E27;   /* raised surface — cards            */
+  --ink-700: #161E27;   /* raised surface - cards            */
   --ink-600: #1D2732;   /* surface hover                     */
   --ink-500: #26323E;   /* surface active / inset            */
 
@@ -71,7 +71,7 @@
   --sp-12: 48px;  --sp-16: 64px;  --sp-20: 80px;  --sp-24: 96px;
   --sp-32: 128px;
 
-  --section-y: clamp(72px, 9vw, 128px);
+  --section-y: clamp(52px, 5.5vw, 84px);
 
   /* ---- Widths ------------------------------------------ */
   --w-page:   1160px;
@@ -107,6 +107,6 @@
   --z-modal: 200;
 
   /* ---- Cursor tracking (written by main.js) ------------ */
-  --px: 50vw;  --py: 50vh;   /* dot spotlight  — fast lerp */
-  --ax: 50vw;  --ay: 50vh;   /* aurora glow    — slow lerp */
+  --px: 50vw;  --py: 50vh;   /* dot spotlight - fast lerp */
+  --ax: 50vw;  --ay: 50vh;   /* aurora glow   - slow lerp */
 }
