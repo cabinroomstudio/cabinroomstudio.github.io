@@ -1,0 +1,112 @@
+/* ============================================================
+   Cabin Room Studio — Design Tokens
+   Single source of truth for colour, type, space, motion.
+   Brand anchors --amber-500 and --coast-500 are unchanged
+   from the original site.
+   ============================================================ */
+
+:root {
+  /* ---- Ground & surfaces ------------------------------- */
+  --ink-900: #0B1015;   /* deepest — page edges, footer      */
+  --ink-800: #10161D;   /* page background                   */
+  --ink-700: #161E27;   /* raised surface — cards            */
+  --ink-600: #1D2732;   /* surface hover                     */
+  --ink-500: #26323E;   /* surface active / inset            */
+
+  --line:      #263340;
+  --line-soft: rgba(255, 255, 255, 0.06);
+  --line-glow: rgba(224, 169, 74, 0.28);
+
+  /* ---- Brand ------------------------------------------- */
+  --amber-400: #F0BD62;
+  --amber-500: #E0A94A;   /* primary brand accent */
+  --amber-600: #C9954A;
+  --amber-rgb: 224, 169, 74;
+
+  --coast-400: #7FC6E4;
+  --coast-500: #5FB4D9;   /* secondary brand accent */
+  --coast-600: #4A9BC2;
+  --coast-rgb: 95, 180, 217;
+
+  /* ---- Roadmap node colours ---------------------------- */
+  --node-teal:   #4FD1C5;
+  --node-coral:  #FF6F61;
+  --node-violet: #B28DFF;
+  --node-sand:   #F4C95D;
+  --node-sky:    #5FB4D9;
+
+  /* ---- Text -------------------------------------------- */
+  --text:       #EAE4D8;
+  --text-muted: #9FB0BE;
+  --text-faint: #6F7D89;
+  --text-on-accent: #0B1015;
+
+  /* ---- Status ------------------------------------------ */
+  --ok:   #6BBF8A;
+  --err:  #E0766A;
+
+  /* ---- Type -------------------------------------------- */
+  --font-display: "DM Serif Display", Georgia, "Times New Roman", serif;
+  --font-body:    "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* fluid scale, 320px -> 1440px */
+  --step--2: clamp(0.72rem, 0.70rem + 0.09vw, 0.78rem);
+  --step--1: clamp(0.82rem, 0.797rem + 0.114vw, 0.90rem);
+  --step-0:  clamp(1rem, 0.982rem + 0.089vw, 1.0625rem);
+  --step-1:  clamp(1.15rem, 1.093rem + 0.286vw, 1.35rem);
+  --step-2:  clamp(1.35rem, 1.236rem + 0.571vw, 1.75rem);
+  --step-3:  clamp(1.60rem, 1.40rem + 1vw, 2.30rem);
+  --step-4:  clamp(2rem, 1.714rem + 1.429vw, 3rem);
+  --step-5:  clamp(2.6rem, 2.143rem + 2.286vw, 4.2rem);
+
+  --leading-tight: 1.1;
+  --leading-snug:  1.35;
+  --leading-body:  1.7;
+  --tracking-wide: 0.18em;
+
+  /* ---- Space (4px base) -------------------------------- */
+  --sp-1: 4px;    --sp-2: 8px;    --sp-3: 12px;   --sp-4: 16px;
+  --sp-5: 20px;   --sp-6: 24px;   --sp-8: 32px;   --sp-10: 40px;
+  --sp-12: 48px;  --sp-16: 64px;  --sp-20: 80px;  --sp-24: 96px;
+  --sp-32: 128px;
+
+  --section-y: clamp(72px, 9vw, 128px);
+
+  /* ---- Widths ------------------------------------------ */
+  --w-page:   1160px;
+  --w-narrow: 760px;
+  --w-text:   68ch;
+
+  /* ---- Radii ------------------------------------------- */
+  --r-sm: 8px;  --r-md: 14px;  --r-lg: 20px;
+  --r-xl: 28px; --r-full: 999px;
+
+  /* ---- Elevation --------------------------------------- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px -4px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 16px 48px -12px rgba(0, 0, 0, 0.55);
+  --shadow-xl: 0 32px 80px -20px rgba(0, 0, 0, 0.7);
+  --glow-amber: 0 0 40px -8px rgba(var(--amber-rgb), 0.45);
+  --glow-coast: 0 0 40px -8px rgba(var(--coast-rgb), 0.40);
+
+  /* ---- Motion ------------------------------------------ */
+  --ease-out:    cubic-bezier(0.16, 1, 0.30, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-inout:  cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 0.18s;
+  --dur-mid:  0.35s;
+  --dur-slow: 0.7s;
+
+  /* ---- Layers ------------------------------------------ */
+  --z-bg: 0;
+  --z-content: 1;
+  --z-grain: 3;
+  --z-nav: 100;
+  --z-drawer: 90;    /* below --z-nav so the close button stays visible+clickable */
+  --z-modal: 200;
+
+  /* ---- Cursor tracking (written by main.js) ------------ */
+  --px: 50vw;  --py: 50vh;   /* dot spotlight  — fast lerp */
+  --ax: 50vw;  --ay: 50vh;   /* aurora glow    — slow lerp */
+}

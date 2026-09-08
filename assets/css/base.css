@@ -1,0 +1,194 @@
+/* ============================================================
+   Cabin Room Studio — Base
+   Reset, typography, ambient background layers, a11y.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;          /* sticky nav clearance */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: var(--leading-body);
+  color: var(--text);
+  background: var(--ink-800);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, svg, video { display: block; max-width: 100%; }
+img { height: auto; }
+
+button, input, textarea, select { font: inherit; color: inherit; }
+button { background: none; border: none; cursor: pointer; }
+
+ul, ol { list-style: none; }
+a { color: inherit; text-decoration: none; }
+
+
+/* ---- Typography -------------------------------------- */
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: var(--leading-tight); }
+h4, h5, h6 { font-family: var(--font-display); font-weight: 400; line-height: var(--leading-snug); }
+
+.u-eyebrow {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--amber-500);
+}
+.u-eyebrow::before {
+  content: ""; width: 18px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--amber-500));
+}
+
+.u-lead { font-size: var(--step-1); color: var(--text-muted); font-weight: 300; }
+.u-muted { color: var(--text-muted); }
+.u-em { font-style: italic; color: var(--amber-500); }
+
+/* gradient headline word */
+.u-grad {
+  background: linear-gradient(100deg, var(--amber-400) 0%, var(--amber-500) 45%, var(--coast-400) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+
+
+/* ---- Layout helpers ----------------------------------- */
+
+.u-container { width: 100%; max-width: var(--w-page); margin-inline: auto; padding-inline: var(--sp-6); }
+.u-narrow { max-width: var(--w-narrow); margin-inline: auto; }
+
+.section { position: relative; z-index: var(--z-content); padding-block: var(--section-y); }
+.section-head { text-align: center; margin-bottom: var(--sp-16); }
+.section-head h2 { font-size: var(--step-4); margin-block: var(--sp-4) var(--sp-3); }
+.section-head p { color: var(--text-muted); font-weight: 300; max-width: 52ch; margin-inline: auto; }
+
+/* soft gradient seam between sections instead of a hard colour band */
+.section--seam::before {
+  content: ""; position: absolute; inset-inline: 0; top: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line) 22%, var(--line) 78%, transparent);
+}
+
+
+/* ---- Ambient background layers ------------------------ */
+
+/* Faint dot grid, always present. ::after is the same grid in
+   amber, revealed only inside a mask that follows the cursor. */
+.dot-field {
+  position: fixed; inset: 0; z-index: var(--z-bg);
+  pointer-events: none;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.055) 1px, transparent 0);
+  background-size: 26px 26px;
+}
+.dot-field::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, var(--amber-500) 1px, transparent 0);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(circle 260px at var(--px) var(--py), #000 0%, rgba(0,0,0,0.35) 45%, transparent 72%);
+          mask-image: radial-gradient(circle 260px at var(--px) var(--py), #000 0%, rgba(0,0,0,0.35) 45%, transparent 72%);
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+.dot-field.is-live::after { opacity: 0.55; }
+
+/* Soft colour that trails further behind the cursor -> depth */
+.aurora {
+  position: fixed; inset: 0; z-index: var(--z-bg);
+  pointer-events: none;
+  background:
+    radial-gradient(circle 460px at var(--ax) var(--ay), rgba(var(--amber-rgb), 0.13), transparent 62%),
+    radial-gradient(circle 300px at var(--ax) var(--ay), rgba(var(--coast-rgb), 0.10), transparent 58%);
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+.aurora.is-live { opacity: 1; }
+
+/* Static baked noise — a raster, NOT a live filter. Stops the
+   flat dark gradients reading as flat. */
+.grain {
+  position: fixed; inset: 0; z-index: var(--z-grain);
+  pointer-events: none; opacity: 0.032;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* No cursor effects where there is no cursor. */
+@media (hover: none), (pointer: coarse) {
+  .dot-field::after, .aurora { display: none; }
+}
+
+
+/* ---- Scroll reveal ------------------------------------ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+
+/* ---- Accessibility ------------------------------------ */
+
+.skip-link {
+  position: absolute; left: var(--sp-4); top: var(--sp-4);
+  z-index: 999;
+  transform: translateY(-200%);
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--amber-500); color: var(--text-on-accent);
+  border-radius: var(--r-full); font-weight: 700; font-size: var(--step--1);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+.skip-link:focus { transform: translateY(0); }
+
+:focus-visible {
+  outline: 2px solid var(--amber-500);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+.u-visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+::selection { background: rgba(var(--amber-rgb), 0.3); color: var(--text); }
+
+
+/* ---- Scrollbar ---------------------------------------- */
+
+* { scrollbar-width: thin; scrollbar-color: var(--ink-500) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--ink-900); }
+::-webkit-scrollbar-thumb { background: var(--ink-500); border-radius: var(--r-full); border: 2px solid var(--ink-900); }
+::-webkit-scrollbar-thumb:hover { background: var(--line); }
+
+
+/* ---- Reduced motion ----------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal { opacity: 1; transform: none; }
+  .dot-field::after, .aurora { display: none; }
+}

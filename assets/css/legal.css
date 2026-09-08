@@ -1,0 +1,144 @@
+/* ============================================================
+   Cabin Room Studio — Legal pages
+   Sits on top of tokens.css + base.css so the policy pages
+   share one visual language with the homepage.
+   ============================================================ */
+
+/* ---- Shell -------------------------------------------- */
+
+.legal-page { padding-top: 92px; }
+
+.nav--legal { justify-content: space-between; }
+.nav--legal .nav-back {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  font-size: var(--step--1); font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--text-muted);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.nav--legal .nav-back:hover { color: var(--amber-500); }
+.nav--legal .nav-back svg { width: 15px; height: 15px; }
+
+
+/* ---- Header ------------------------------------------- */
+
+.legal-head {
+  padding-block: var(--sp-16) var(--sp-12);
+  border-bottom: 1px solid var(--line);
+  margin-bottom: var(--sp-12);
+}
+.legal-head h1 {
+  font-size: var(--step-4);
+  margin-block: var(--sp-4) var(--sp-4);
+}
+.legal-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-faint);
+}
+.legal-meta span { display: inline-flex; align-items: center; gap: var(--sp-2); }
+.legal-meta span + span::before {
+  content: ""; width: 4px; height: 4px; border-radius: 50%;
+  background: var(--line); margin-right: var(--sp-1);
+}
+
+
+/* ---- Body --------------------------------------------- */
+
+.legal-body {
+  max-width: var(--w-text);
+  padding-bottom: var(--sp-24);
+}
+.legal-body h2 {
+  font-size: var(--step-2);
+  color: var(--text);
+  margin-block: var(--sp-12) var(--sp-4);
+  scroll-margin-top: 110px;
+}
+.legal-body h2:first-child { margin-top: 0; }
+.legal-body h3 {
+  font-size: var(--step-1);
+  margin-block: var(--sp-8) var(--sp-3);
+}
+.legal-body p {
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: var(--leading-body);
+  margin-bottom: var(--sp-4);
+}
+.legal-body ul, .legal-body ol {
+  margin-bottom: var(--sp-5);
+  padding-left: var(--sp-1);
+  display: grid; gap: var(--sp-3);
+}
+.legal-body li {
+  position: relative;
+  padding-left: var(--sp-6);
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: var(--leading-body);
+}
+.legal-body li::before {
+  content: ""; position: absolute;
+  left: 0; top: 0.72em;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--amber-500); opacity: 0.7;
+}
+.legal-body ol { counter-reset: legal; }
+.legal-body ol > li { counter-increment: legal; }
+.legal-body ol > li::before {
+  content: counter(legal) ".";
+  width: auto; height: auto; border-radius: 0;
+  background: none; top: 0;
+  font-family: var(--font-mono); font-size: var(--step--1);
+  color: var(--amber-500); opacity: 1;
+}
+.legal-body a {
+  color: var(--amber-500);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(var(--amber-rgb), 0.4);
+  transition: text-decoration-color var(--dur-fast) var(--ease-out);
+}
+.legal-body a:hover { text-decoration-color: var(--amber-500); }
+.legal-body strong { color: var(--text); font-weight: 700; }
+
+
+/* ---- Callout ------------------------------------------ */
+
+.legal-callout {
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--coast-500);
+  border-radius: var(--r-md);
+  background: rgba(var(--coast-rgb), 0.06);
+  padding: var(--sp-5) var(--sp-6);
+  margin-bottom: var(--sp-8);
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: var(--leading-body);
+}
+.legal-callout strong { color: var(--coast-400); font-weight: 700; }
+
+
+/* ---- Footer ------------------------------------------- */
+
+.legal-footer { padding-block: var(--sp-12); }
+.legal-footer .u-container {
+  display: flex; flex-wrap: wrap; gap: var(--sp-4);
+  align-items: center; justify-content: space-between;
+}
+.legal-footer-links { display: flex; flex-wrap: wrap; gap: var(--sp-6); }
+.legal-footer-links a {
+  font-size: var(--step--1); color: var(--text-muted);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+.legal-footer-links a:hover { color: var(--amber-500); }
+
+
+@media (max-width: 640px) {
+  .legal-page { padding-top: 76px; }
+  .legal-head { padding-block: var(--sp-10) var(--sp-8); margin-bottom: var(--sp-8); }
+  .nav--legal .nav-back span { display: none; }
+}
