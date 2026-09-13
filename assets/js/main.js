@@ -492,7 +492,7 @@
         .then(function (r) { return r.json(); })
         .then(function (result) {
           if (!result.success) throw new Error(result.message || 'Request failed');
-          status.textContent = 'Thanks - message sent. We usually reply within a day or two.';
+          status.textContent = 'Thanks - message sent.';
           status.classList.add('is-ok');
           form.reset();
         })
