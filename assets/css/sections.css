@@ -351,3 +351,66 @@
   .privacy-card { grid-template-columns: 1fr; gap: var(--sp-5); padding: var(--sp-6); }
   .app-cta { padding: var(--sp-8) var(--sp-6); }
 }
+
+
+/* ============================================================
+   OfficeTrack product page
+   ============================================================ */
+
+/* hero led by the feature graphic rather than a phone shot */
+.hero--banner { min-height: auto; }
+.hero-banner { max-width: 880px; margin-inline: auto; }
+.hero-banner img { width: 100%; height: auto; display: block; }
+.hero--banner .hero-copy { align-items: center; text-align: center; margin-top: var(--sp-10); }
+.hero--banner .app-title { justify-content: center; }
+.hero--banner .hero-sub { margin-inline: auto; }
+.hero--banner .hero-actions { justify-content: center; }
+.hero--banner .hero-note { justify-content: center; }
+
+/* not a link: the store listing is not public yet */
+.coming-badge {
+  display: inline-flex; align-items: center; gap: var(--sp-3);
+  padding: 14px var(--sp-8);
+  border: 1px dashed var(--line); border-radius: var(--r-full);
+  font-size: var(--step--1); font-weight: 700;
+  color: var(--text-muted);
+}
+.coming-badge::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--amber-500); box-shadow: 0 0 10px var(--amber-500);
+  flex-shrink: 0;
+}
+
+/* Pro extras */
+.pro-card { padding: var(--sp-10); }
+.pro-card h2 { font-size: var(--step-2); margin-bottom: var(--sp-3); }
+.pro-card > p { color: var(--text-muted); font-weight: 300; max-width: 62ch; }
+.pro-list {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3) var(--sp-8);
+  margin-top: var(--sp-8);
+}
+.pro-list li {
+  position: relative; padding-left: var(--sp-6);
+  color: var(--text-muted); font-weight: 300; font-size: var(--step--1);
+}
+.pro-list li::before {
+  content: ""; position: absolute; left: 0; top: 0.62em;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--amber-500); opacity: 0.8;
+}
+
+/* a disclaimer that should read as a note, not a feature */
+.note-line {
+  margin-top: var(--sp-5); padding-top: var(--sp-5);
+  border-top: 1px solid var(--line);
+  font-size: var(--step--2); color: var(--text-faint); max-width: 62ch;
+}
+
+/* "coming soon" variant of the app card status pill */
+.app-tag--soon::before { background: var(--amber-500); box-shadow: 0 0 8px var(--amber-500); }
+
+@media (max-width: 768px) {
+  .pro-card { padding: var(--sp-6); }
+  .pro-list { grid-template-columns: 1fr; gap: var(--sp-3); }
+}
