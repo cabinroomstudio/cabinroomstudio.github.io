@@ -28,13 +28,6 @@
   --coast-600: #4A9BC2;
   --coast-rgb: 95, 180, 217;
 
-  /* ---- Roadmap node colours ---------------------------- */
-  --node-teal:   #4FD1C5;
-  --node-coral:  #FF6F61;
-  --node-violet: #B28DFF;
-  --node-sand:   #F4C95D;
-  --node-sky:    #5FB4D9;
-
   /* ---- Text -------------------------------------------- */
   --text:       #EAE4D8;
   --text-muted: #9FB0BE;

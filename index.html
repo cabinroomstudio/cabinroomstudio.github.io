@@ -4,20 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cabin Room Studio - Focused Android apps</title>
-<meta name="description" content="Cabin Room Studio is a small independent Android studio. We build focused apps with no bloat and no dark patterns. Home of Weighly, a calm weight tracker that keeps your data on your device.">
+<meta name="description" content="Cabin Room Studio is a small independent Android studio. We build focused apps with no bloat and no dark patterns. Home of Weighly, a calm weight tracker, and OfficeTrack, a hybrid-work tracker. Both keep your data on your device.">
 <link rel="canonical" href="https://cabinroomstudio.github.io/">
 <meta name="theme-color" content="#10161D">
 
 <!-- Open Graph / social preview -->
 <meta property="og:title" content="Cabin Room Studio">
-<meta property="og:description" content="Focused Android apps, built with care. Home of Weighly, a calm weight tracker for Android.">
+<meta property="og:description" content="Focused Android apps, built with care. Home of Weighly and OfficeTrack, both free on Google Play.">
 <meta property="og:image" content="https://cabinroomstudio.github.io/og-image.jpg">
 <meta property="og:url" content="https://cabinroomstudio.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Cabin Room Studio">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Cabin Room Studio">
-<meta name="twitter:description" content="Focused Android apps, built with care. Home of Weighly, a calm weight tracker for Android.">
+<meta name="twitter:description" content="Focused Android apps, built with care. Home of Weighly and OfficeTrack, both free on Google Play.">
 <meta name="twitter:image" content="https://cabinroomstudio.github.io/og-image.jpg">
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -54,6 +54,16 @@
       "description": "A calm, focused weight tracker with a custom chart, goal line, BMI calculator, mood logging and reminders. All data stays on your device.",
       "publisher": { "@id": "https://cabinroomstudio.github.io/#studio" },
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "OfficeTrack",
+      "operatingSystem": "Android",
+      "applicationCategory": "BusinessApplication",
+      "url": "https://play.google.com/store/apps/details?id=com.cabinroomstudio.officetrack",
+      "description": "Hybrid work, without the spreadsheet. Log where you work each day and see at a glance whether you are on track for your office target. Everything stays on your phone.",
+      "publisher": { "@id": "https://cabinroomstudio.github.io/#studio" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
     }
   ]
 }
@@ -62,8 +72,6 @@
   .reveal { opacity: 1 !important; transform: none !important; }
   .faq-a { grid-template-rows: 1fr; }
   .faq-a > div { padding-bottom: var(--sp-6); }
-  .rm-item { opacity: 1 !important; transform: none !important; }
-  .roadmap-svg { display: none; }
 </style></noscript>
 </head>
 <body>
@@ -86,7 +94,7 @@
 
   <nav class="nav-links" aria-label="Primary">
     <a href="#apps">Apps</a>
-    <a href="#pipeline">What&rsquo;s next</a>
+    <a href="#about">Studio</a>
     <a href="#contact">Contact</a>
   </nav>
 
@@ -99,8 +107,8 @@
 
 <nav class="drawer" id="drawer" aria-label="Mobile">
   <a href="#apps" style="--i:0">Apps</a>
-  <a href="#pipeline" style="--i:1">What&rsquo;s next</a>
-  <a href="weighly.html" style="--i:2">Weighly</a>
+  <a href="weighly.html" style="--i:1">Weighly</a>
+  <a href="officetrack.html" style="--i:2">OfficeTrack</a>
   <a href="#contact" style="--i:3">Get in touch</a>
 </nav>
 
@@ -170,7 +178,7 @@
       <div class="section-head reveal">
         <p class="u-eyebrow">Shipped</p>
         <h2>Our apps</h2>
-        <p>Two apps live on Google Play, with more on the way.</p>
+        <p>Two apps, both live on Google Play. Free, no account needed.</p>
       </div>
 
       <div class="app-grid">
@@ -229,95 +237,6 @@
             </div>
           </div>
         </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= ROADMAP ================= -->
-  <section class="section roadmap" id="pipeline">
-    <div class="u-container">
-      <div class="section-head reveal">
-        <p class="u-eyebrow">In the workshop</p>
-        <h2>What&rsquo;s next</h2>
-        <p>Being built carefully - no release dates, only when they&rsquo;re ready. Tap a node for details.</p>
-      </div>
-
-      <div class="roadmap-track">
-        <svg class="roadmap-svg" aria-hidden="true"><path class="roadmap-path" stroke="url(#rmGradient)"/></svg>
-        <svg width="0" height="0" aria-hidden="true">
-          <defs>
-            <linearGradient id="rmGradient" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#4fd1c5"/>
-              <stop offset="20%" stop-color="#ff6f61"/>
-              <stop offset="40%" stop-color="#b28dff"/>
-              <stop offset="60%" stop-color="#f4c95d"/>
-              <stop offset="100%" stop-color="#5fb4d9"/>
-            </linearGradient>
-          </defs>
-        </svg>
-
-
-        <div class="rm-item rm-item--live rm-item--top" style="--node:#4fd1c5; --glow:rgba(79,209,197,0.35)">
-          <button class="rm-node" type="button" aria-expanded="false" aria-label="Doc Scanner - in development">
-            <svg class="rm-icon ic-scan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="5" y="3" width="14" height="18" rx="2"/><line class="scan-line" x1="7" y1="12" x2="17" y2="12"/>
-            </svg>
-          </button>
-          <div class="rm-label"><h3>Doc Scanner</h3><p class="rm-status">In development</p></div>
-          <div class="rm-pop"><p>A fast, private document scanner that works entirely on-device. No cloud upload required.</p></div>
-        </div>
-
-        <div class="rm-item rm-item--live rm-item--bottom" style="--node:#ff6f61; --glow:rgba(255,111,97,0.35)">
-          <button class="rm-node" type="button" aria-expanded="false" aria-label="News Aggregator - in development">
-            <svg class="rm-icon ic-news" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <rect x="3" y="5" width="18" height="14" rx="1.5"/>
-              <line class="paper-line" x1="6.5" y1="9" x2="17.5" y2="9"/>
-              <line class="paper-line" x1="6.5" y1="12.5" x2="17.5" y2="12.5"/>
-              <line class="paper-line" x1="6.5" y1="16" x2="13" y2="16"/>
-            </svg>
-          </button>
-          <div class="rm-label"><h3>News Aggregator</h3><p class="rm-status">In development</p></div>
-          <div class="rm-pop"><p>A clean RSS reader that pulls from public feeds you choose - no algorithmic noise, no doom scroll.</p></div>
-        </div>
-
-        <div class="rm-item rm-item--soon rm-item--top" style="--node:#b28dff; --glow:rgba(178,141,255,0.3)">
-          <button class="rm-node" type="button" aria-expanded="false" aria-label="Chess Puzzle - in design">
-            <svg class="rm-icon ic-knight" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M7 21h10M8 21c-.5-4 .5-6 2-7-1-1.5-1.5-3-1-5 .5-2 2.5-3.5 5-3.5 0 1.5-.5 2.5-1.5 3 1.5.5 2.5 2 2.5 4 0 3-1 6.5-1 8.5"/>
-              <circle cx="14" cy="7" r="0.6" fill="currentColor"/>
-            </svg>
-          </button>
-          <div class="rm-label"><h3>Chess Puzzle</h3><p class="rm-status">Design</p></div>
-          <div class="rm-pop"><p>Daily tactics puzzles to sharpen your game. No accounts, no clock pressure, just the board.</p></div>
-        </div>
-
-        <div class="rm-item rm-item--live rm-item--bottom" style="--node:#f4c95d; --glow:rgba(244,201,93,0.3)">
-          <button class="rm-node" type="button" aria-expanded="false" aria-label="Quiz App - in development">
-            <svg class="rm-icon ic-quiz" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="9"/>
-              <path class="quiz-mark" d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.9.4-1.5.9-1.5 2"/>
-              <circle cx="12" cy="17" r="0.6" fill="currentColor"/>
-            </svg>
-          </button>
-          <div class="rm-label"><h3>Quiz App</h3><p class="rm-status">In development</p></div>
-          <div class="rm-pop"><p>Quick quizzes on topics you pick, with streaks and achievements. Your play history stays on your device.</p></div>
-        </div>
-
-        <div class="rm-item rm-item--soon rm-item--top" style="--node:#5fb4d9; --glow:rgba(95,180,217,0.3)">
-          <button class="rm-node" type="button" aria-expanded="false" aria-label="Weather App - ideating">
-            <svg class="rm-icon ic-weather" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle class="w-sun" cx="9" cy="8" r="3"/>
-              <path class="w-cloud" d="M6 17h10a3.5 3.5 0 0 0 .5-6.96A5 5 0 0 0 7.1 12.06 3.5 3.5 0 0 0 6 17z"/>
-            </svg>
-          </button>
-          <div class="rm-label"><h3>Weather App</h3><p class="rm-status">Ideating</p></div>
-          <div class="rm-pop"><p>Simple, accurate forecasts. Nothing more than what you actually need.</p></div>
-        </div>
-
-        <div class="rm-item rm-item--more rm-item--bottom">
-          <span class="rm-node" aria-hidden="true"><span style="color:var(--text-faint);font-size:1.2rem;line-height:1">+</span></span>
-          <div class="rm-label"><span>More coming</span></div>
-        </div>
       </div>
     </div>
   </section>

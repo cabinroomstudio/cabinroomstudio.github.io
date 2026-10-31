@@ -236,120 +236,6 @@
   }
 
 
-  /* ---- Roadmap ------------------------------------------
-     The curved connector threads a bezier through every node
-     centre. Carried over from the original site.            */
-
-  function initRoadmap() {
-    var track = $('.roadmap-track');
-    var svg = $('.roadmap-svg');
-    var path = $('.roadmap-path');
-    if (!track) return;
-
-    function draw() {
-      if (!path || !svg) return;
-      if (window.innerWidth <= 768) return;   // vertical timeline on phones
-
-      var box = track.getBoundingClientRect();
-      svg.setAttribute('width', box.width);
-      svg.setAttribute('height', box.height);
-      svg.setAttribute('viewBox', '0 0 ' + box.width + ' ' + box.height);
-
-      var points = $$('.rm-node', track).map(function (node) {
-        var r = node.getBoundingClientRect();
-        return [r.left - box.left + r.width / 2, r.top - box.top + r.height / 2];
-      }).filter(function (p) { return !isNaN(p[0]); });
-
-      if (points.length < 2) { path.setAttribute('d', ''); return; }
-
-      var d = 'M ' + points[0][0] + ' ' + points[0][1];
-      for (var i = 1; i < points.length; i++) {
-        var x0 = points[i - 1][0], y0 = points[i - 1][1];
-        var x1 = points[i][0], y1 = points[i][1];
-        var mx = (x0 + x1) / 2;
-        d += ' C ' + mx + ' ' + y0 + ', ' + mx + ' ' + y1 + ', ' + x1 + ' ' + y1;
-      }
-      path.setAttribute('d', d);
-
-      var len = path.getTotalLength ? path.getTotalLength() : 1400;
-      path.style.strokeDasharray = len;
-      if (!svg.classList.contains('is-visible')) path.style.strokeDashoffset = len;
-    }
-
-    var timer;
-    window.addEventListener('resize', function () {
-      clearTimeout(timer);
-      timer = setTimeout(draw, 120);
-    });
-    window.addEventListener('load', draw);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
-    setTimeout(draw, 100);
-
-    var items = $$('.rm-item', track);
-
-    if ('IntersectionObserver' in window && !reduceMotion) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        });
-      }, { threshold: 0.2 });
-      items.forEach(function (item, i) {
-        item.style.transitionDelay = Math.min(i * 80, 320) + 'ms';
-        io.observe(item);
-      });
-
-      var lineIo = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          if (svg) svg.classList.add('is-visible');
-          if (path) path.style.strokeDashoffset = '0';
-          lineIo.disconnect();
-        });
-      }, { threshold: 0.1 });
-      lineIo.observe(track);
-    } else {
-      items.forEach(function (item) { item.classList.add('is-visible'); });
-      if (svg) svg.classList.add('is-visible');
-    }
-
-    // popovers: click and keyboard, not hover alone
-    items.forEach(function (item) {
-      var node = $('.rm-node', item);
-      if (!node || item.classList.contains('rm-item--more')) return;
-
-      node.addEventListener('click', function (e) {
-        e.stopPropagation();
-        var wasOpen = item.classList.contains('is-open');
-        items.forEach(function (other) {
-          other.classList.remove('is-open');
-          var n = $('.rm-node', other);
-          if (n) n.setAttribute('aria-expanded', 'false');
-        });
-        if (!wasOpen) {
-          item.classList.add('is-open');
-          node.setAttribute('aria-expanded', 'true');
-        }
-      });
-
-      node.addEventListener('keydown', function (e) {
-        if (e.key !== 'Escape') return;
-        item.classList.remove('is-open');
-        node.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    document.addEventListener('click', function () {
-      items.forEach(function (item) {
-        item.classList.remove('is-open');
-        var n = $('.rm-node', item);
-        if (n && n.hasAttribute('aria-expanded')) n.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
-
-
   /* ---- Screenshot 3D tilt -------------------------------
      Tilts each shot toward the cursor so it reads as floating
      above the page rather than just sliding upward.         */
@@ -525,7 +411,6 @@
     initDrawer();
     initSpotlight();
     initFaq();
-    initRoadmap();
     initTilt();
     initLightbox();
     initParallax();
