@@ -12,7 +12,12 @@ Newest first. Finished or superseded items move here from `docs/SESSION.md`.
   the JSON-LD graph, meta/OG/Twitter descriptions mention both. `fa83dd3`.
 - `og-image.jpg` badge "HOME OF WEIGHLY" became "WEIGHLY . OFFICETRACK", patched
   in place rather than re-rendered. `47f4b2b`.
-- Added `scripts/gate.sh`.
+- Added `scripts/gate.sh`, `docs/SESSION.md`, `docs/SESSION-archive.md` and
+  `docs/LESSONS.md`. Gate negative-tested on a broken copy: FAIL, exit 1.
+  `b76ad33`.
+- Those files were briefly public, since Pages serves the whole repo. Added
+  `_config.yml` with `exclude: [docs, scripts]` and confirmed both paths now 404
+  while every page, asset and `app-ads.txt` still serves. `c90e4a4`.
 
 ## 2026-10-12
 

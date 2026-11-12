@@ -27,6 +27,10 @@ One line each: what goes wrong, then what to do instead.
   (md5 for images, a grep for page text) against the local file.
 - Pages has gone into `degraded_performance` before and taken 20 minutes instead
   of 40 seconds: a 404 right after a push is not proof of a broken deploy.
+- GitHub Pages publishes every file in the repository, so `docs/SESSION.md` and
+  `scripts/gate.sh` were live public URLs the moment they were pushed: anything
+  internal needs a matching entry in `exclude:` in `_config.yml`, and a fetch to
+  confirm it 404s afterwards.
 - Marketing copy and policy text drift apart: OfficeTrack serves ads while the old
   WFO Tracker pages claimed no internet permission, and the hero claimed "No ads".
   Re-read the live policy pages before writing any privacy claim on a product page.
