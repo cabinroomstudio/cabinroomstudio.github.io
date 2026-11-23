@@ -1,12 +1,16 @@
 # Session notes
 
-Last updated: 2026-11-08, `c90e4a4` (pushed, in sync with origin)
+Last updated: 2026-11-23 (chess app policy pages added)
 
 ## Now
 
-Nothing in progress. The site is live and current: homepage covers only the two
-apps that are on Google Play, the notes and the gate are in the repo but excluded
-from the published site, and the live pages were verified by fetching them.
+Nothing in progress. 2026-11-23: `chesspuzzle-privacy.html` and
+`chesspuzzle-terms.html` added for the chess app (working name Taqtiq,
+`com.cabinroomstudio.chesspuzzle`), in the sitemap, no card or product page
+until it is on Play (same as QuizApp). Their text is the app's own: the policy
+from the ChessPuzzle repo's `docs/privacy-policy.html`, the terms from its
+`TermsScreen.kt`. When either changes in the app, update the page here too.
+The URL is named after the package so it survives a name change.
 
 ## Uncommitted
 
